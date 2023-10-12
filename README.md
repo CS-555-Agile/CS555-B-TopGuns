@@ -10,6 +10,7 @@
 | 20012448    |       Shivam Patel       |
 | 20010946    |    Archi Patel    |
 | 20012658     |   Shiv Shah  |
+| 20010614    |  Hiral Makwana  |
 
 ##  🧪 Problem Statment
 
