@@ -16,6 +16,12 @@
 
 A life-end care application aka "HARMONY" is a digital tool designed to facilitate comprehensive end-of-life planning and support for individuals. It enables users to create advanced directives, deal with their loneliness , and manage medical needs and emotional needs. Additionally, it offers resources for emotional guidance, connects users with palliative care services, and provides a platform for communication with loved ones and review their healthcare providers, ensuring that one's end-of-life wishes are respected and coordinated effectively
 
+## Branches
+
+- main (main development branch)
+- master (main release branch)
+- sprint_<sprint_number> (sprint branch)
+
 ##  🧪 Problem Statment
 
 - TODO
