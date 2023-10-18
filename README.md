@@ -26,17 +26,20 @@ A life-end care application aka "HARMONY" is a digital tool designed to facilita
 
 - TODO
 
-## Figma Link:
-- https://www.figma.com/file/D30RbF0p90vTBKsJGVtx0I/Healthcare?type=design&node-id=4%3A433&mode=design&t=wgPmEF1iSZuqaL9a-1
-
+## Reference Links:
+- Figma: a.com/file/D30RbF0p90vTBKsJGVtx0I/Healthcare?type=design&node-id=4%3A433&mode=design&t=wgPmEF1iSZuqaL9a-1
+- Postman: https://www.postman.com/vaishvik24/workspace/harmony-apis/collection/3753695-323992cf-97fa-44a8-ba31-6687024d0354?action=share&creator=3753695 
 ## 🐛 Development  Process
 
-- TODO
+- Agile Process
+    - Sprint1
+        - Codebase setup
+        - Basic login signup
 
-## 🐛 Bugs/Issues
+<!-- ## 🐛 Bugs/Issues
 
 - TODO
 
 ## 💡 Testing
 
-- TODO
+- TODO -->
