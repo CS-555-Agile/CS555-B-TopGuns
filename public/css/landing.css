@@ -1,1 +1,15 @@
+.background-link {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../images/Wireframe\ -\ 3.png');
+    background-size: cover;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+}
 
+.content-wrapper {
+    padding: 50px;
+}
