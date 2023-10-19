@@ -10,7 +10,7 @@
 | 20012448    |       Shivam Patel       | Frontend Developer/Scrum Master |
 | 20010946    |    Archi Patel    | Frontend Developer | 
 | 20012658     |   Shiv Shah  | Frontend + Backend Developer | 
-| 20010614    |  Hiral Makwana  | QA |
+| 20010614    |  Hiral Makwana  | Frontend Developer/QA |
 
 ##  🧪 Problem Statment
 
