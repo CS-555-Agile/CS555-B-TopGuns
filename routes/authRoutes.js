@@ -21,7 +21,8 @@ router.route("/").get(async(req,res) => {
           .status(200)
           .render("landing/landingPage", {
             title: "LandingPage",
-            css: "auth-css",
+            partial: "landing-script",
+            css: "landing-css",
           });
   } else {
     return res.redirect("/home");
@@ -79,6 +80,7 @@ router
 
       const existingUser = await userData.checkUser(emailInput, passwordInput);
       if (existingUser) {
+        // console.log(existingUser);
         req.session.user = existingUser;
         req.session.user.verified = true;
         // return res.redirect("otp");
@@ -208,7 +210,7 @@ router.route("/logout").get(async (req, res) => {
   req.session.destroy();
   return res.render("landing/landingPage", {
     title: "Logged out",
-    partial: "auth-script",
+    partial: "landing-script",
     css: "landing-css",
   });
 });

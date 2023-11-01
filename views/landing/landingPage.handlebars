@@ -1,20 +1,42 @@
-<a href="Signup.html" class="background-link"> <!-- Replace 'https://example.com' with the desired URL you want to redirect to -->
-        <div class="container">
-            <h1>Harmony: Where healing meets helping hands</h1>
-                <div class="bird-container bird-container-one">
-                    <div class="bird bird-one"></div>
-                </div>
-                
-                <div class="bird-container bird-container-two">
-                    <div class="bird bird-two"></div>
-                </div>
-                
-                <div class="bird-container bird-container-three">
-                    <div class="bird bird-three"></div>
-                </div>
-                
-                <div class="bird-container bird-container-four">
-                    <div class="bird bird-four"></div>
-                </div>
+ <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+        
+
+
+    
+      
         </div>
-</a>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>Join us </h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              Click here to continue
+          </button>
+          
+          <script>
+              document.getElementById("sign-up-btn").addEventListener("click", function() {
+                  setTimeout(function() {
+                      window.open("/login","_self");
+                  }, 2000); // 2000 milliseconds = 2 seconds
+              });
+          </script>
+          
+            
+         
+            
+            </button>
+          </div>
+          <img src="../../public/images/login.png" class="image" alt="" style="width: 630px;" />
+
+        </div>
+       
+      </div>
+    </div>
