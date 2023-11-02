@@ -1,14 +1,63 @@
 const { ObjectId } = require("mongodb");
 const { appointments } = require("../config/mongoCollections");
+const { users } = require("../config/mongoCollections");
 const bcrypt = require("bcryptjs");
 const { badRequestError, internalServerError, notFoundError } = require("../helpers/wrappers");
 const {validString, validObjectId } = require("../helpers/validations");
+const dateString  = new Date().toISOString().split('T')[0];
 
+const getPastAppointment = async (userId) => {
+  
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+  const userObject = await appointmentCollection.find( { patient_id: (userId), date: {$lt: dateString} }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+const getupComingAppointment = async (userId) => {
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+  const userObject = await appointmentCollection.find( { patient_id: (userId), date: {$gte: dateString} }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+const getUserByprofessionalStaff = async () => {
+  
+  const userCollection = await users();
+  const userObject = await userCollection.find({ category:"professionalStaff" }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No user found as professional staff!",
+      code: 404,
+    };
+  return userObject;
+};
+const getUserByconsultant = async () => {
+  
+  const userCollection = await users();
+  const userObject = await userCollection.find({ category:"consultant" }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No user found as consultant !",
+      code: 404,
+    };
+  return userObject;
+};
 
-const createAppointments = async (category, consultant_id, patient_id, time_slot, notes) => {
+const createAppointments = async (category, consultant_id, patient_id, time_slot, date,notes) => {
   // Validations
   try {
-    if (!category || !consultant_id || !patient_id || !time_slot || !notes) throw `All fields must be supplied!`;
+    if (!category || !consultant_id || !patient_id || !time_slot || !date) throw `All fields must be supplied!`;
     //add validations
     //check time
 
@@ -27,6 +76,7 @@ const createAppointments = async (category, consultant_id, patient_id, time_slot
       consultant_id:consultant_id,
       patient_id:patient_id,
       time_slot:time_slot,
+      date:date,
       notes:notes,
       status:"Pending"
     };
@@ -44,47 +94,12 @@ const createAppointments = async (category, consultant_id, patient_id, time_slot
 
 
 
-const getPastAppointment = async (userId) => {
-  validObjectId(userId, "ID");
-  userId = userId.trim();
-  const appointmentCollection = await appointments();
-
-  const today = new Date(); // Get the current date and time
-  const currentDate = new Date();
-  const formattedDate = '2023-12-01'
-  //currentDate.toISOString().substr(0, 10);
-  const formattedTime = '10:00';
-  //currentDate.toTimeString().substr(0, 5);
-  
-  const userObject = await appointmentCollection.findOne( {
-    patient_id: ObjectId(userId), // Convert patient_id to ObjectId
-    date: { $lt: formattedDate }, // Date should be less than targetDate
-    time_slot: { $lt: formattedTime }, // Time should be less than targetTime
-  }).toArray();
-  if (userObject === null)
-    throw {
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
-  return userObject;
-};
-
-const getupComingAppointment = async (userId) => {
-  validObjectId(userId, "ID");
-  userId = userId.trim();
-  const appointmentCollection = await appointments();
-  const userObject = await appointmentCollection.findOne( { patient_id: ObjectId(userId), date: {$gt: new Date()}, "time_slot": { $gt: new Date() } });
-  if (userObject === null)
-    throw {
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
-  return userObject;
-};
-
-
 module.exports = {
   
   createAppointments,
+  getPastAppointment,
+  getUserByconsultant,
+  getUserByprofessionalStaff,
+  getupComingAppointment
  
 };
