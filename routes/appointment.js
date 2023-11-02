@@ -5,7 +5,11 @@ const {
   getUserByconsultant,
   getUserByprofessionalStaff,
   getPastAppointment,
-  getupComingAppointment
+  getupComingAppointment,
+  getPast,
+  getupComing,
+  getPendingAppointment,
+  updateAppointmentStatus
 } = require("../data/appointments");
 const {
   validObjectId,
@@ -20,7 +24,12 @@ router.route("/").get(async (req, res) => {
   //code here for GET
   try {
     if (!req.session.user?.verified || req.session.user.category!="patient") {
-      return res.redirect("/home");
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "home-css",
+        doctor:true
+      });
     } 
     else {
       let userId = String(req.session.user._id);
@@ -99,7 +108,22 @@ router.route("/").get(async (req, res) => {
       console.log(err, "Line 194");
       return res.status(err?.status ?? 500)
     } else {
-      return res.redirect("/home");
+      if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
+        }
       
     }
   } catch (err) {
@@ -113,7 +137,22 @@ router.route("/").get(async (req, res) => {
 router.route("/getConsultant").get(async (req, res) => {
   try {
     if (!req.session.user?.verified) {
-      return res.redirect("/home");
+      if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
+        }
     } else {
        const data = await getUserByconsultant();
       return res.json(data)
@@ -127,7 +166,22 @@ router.route("/getConsultant").get(async (req, res) => {
 router.route("/getProfessioanl").get(async (req, res) => {
   try {
     if (!req.session.user?.verified) {
-      return res.redirect("/home");
+      if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
+        }
     } else {
        const data = await getUserByprofessionalStaff();
       return res.json(data)
@@ -137,6 +191,80 @@ router.route("/getProfessioanl").get(async (req, res) => {
   }
 
 
+});
+
+// doctor side 
+
+router.route("/show").get(async (req, res) => {
+  //code here for GET
+  try {
+    if (!req.session.user?.verified || req.session.user.category==="patient") {
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "home-css",
+        doctor:true
+      });
+    } 
+    else {
+      let userId = String(req.session.user._id);
+      console.log(userId)
+     
+      const past = await getPast(userId);
+      const future = await getupComing(userId);
+      const pending = await getPendingAppointment(userId);
+      console.log(past)
+      console.log(future)
+      console.log(pending)
+        
+      return res
+        .status(200)
+        .render("appointment/adminView", {
+          past:past,
+          future:future,
+          pending:pending,
+          title: "Appointment",
+          partial: "adminView-script",
+          css: "adminView-css",
+          
+        });
+      
+    }
+  } catch (err) {
+    return res
+      .status(err?.status ?? 500)
+      .render("auth/signup", {
+        title: "Login",
+        partial: "signup-script",
+        css: "signup-css",
+      });
+  }
+});
+
+
+router.put('/accept/:appId', async (req, res) => {
+  try {
+    const  appId = req.params.appId;
+    const  status  = true;
+    console.log(appId + " ---- " + status);
+    const result = await updateAppointmentStatus(appId, status);
+    res.status(result.code).json({ message: result.message });
+  } catch (error) {
+    console.error('Error updating status:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+router.put('/decline/:appId', async (req, res) => {
+  try {
+    const  appId = req.params.appId;
+    const  status  = false;
+    console.log(appId + " ---- " + status);
+    const result = await updateAppointmentStatus(appId, status);
+    res.status(result.code).json({ message: result.message });
+  } catch (error) {
+    console.error('Error updating status:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 module.exports = router;
 
