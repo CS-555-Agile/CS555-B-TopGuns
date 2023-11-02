@@ -502,7 +502,16 @@ body {
   height: calc(var(--radio-switch-height) - 2*var(--radio-switch-padding));
   width: calc(var(--radio-switch-width)*0.5 - var(--radio-switch-padding));
 }
+.error-div{
 
+ background-color: #f2dede;
+  border-color: #ebccd1;
+
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+ 
+}
 .radio-switch__label {
   position: relative;
   z-index: 2;
