@@ -25,7 +25,19 @@ router.route("/").get(async(req,res) => {
             css: "landing-css",
           });
   } else {
-    return res.redirect("/home");
+    
+    if(req.session.user.category ==="patient"){
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "home-css",
+        patient:true
+      });
+    }
+    else{
+      return res.redirect("/home")
+    }
+    
   }
 })
 
@@ -43,7 +55,18 @@ router
             css: "signup-css",
           });
       } else {
-        return res.redirect("/home");
+        // return res.redirect("/home");
+        if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.redirect("/home")
+        }
       }
     } catch (err) {
       return res
@@ -84,7 +107,19 @@ router
         req.session.user = existingUser;
         req.session.user.verified = true;
         // return res.redirect("otp");
-        return res.status(200).redirect("/home");
+        console.log(req.session.user.category)
+        if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.redirect("/home")
+        }
+        // return res.status(200).redirect("/home");
       } else {
         console.log("Line 115 .......", err);
         return res.status(err?.status ?? 500).render("auth/signup", {
@@ -119,7 +154,18 @@ router
             css: "signup-css",
           });
       } else {
-        return res.redirect("/home");
+        // return res.redirect("/home");
+        if(req.session.user.category === "patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.redirect("/home")
+        }
       }
     } catch (err) {
       console.log(err);
