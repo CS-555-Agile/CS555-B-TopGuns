@@ -19,15 +19,19 @@
                         <li class = "nav-item">
                             <a href = "#" class = "nav-link">Home</a>
                         </li>
+                        
+                        {{#if patient}}
                         <li class = "nav-item">
                             <a href = "#" class = "nav-link">Entertainment</a>
                         </li>
                         <li class = "nav-item">
-                            <a href = "services.html" class = "nav-link">Service</a>
+                            <a href = "/appointment" class = "nav-link">Book Appointment</a>
                         </li>
                         <li class = "nav-item">
-                            <a href = "Feedback.html" class = "nav-link">Feedback</a>
+                            <a href = "/feedbacks" class = "nav-link">Feedback</a>
                         </li>
+                        {{/if}}
+                        
                        
                         <li class = "nav-item">
                             <a href = "/logout" class = "nav-link" >Logout</a>
