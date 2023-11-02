@@ -6,6 +6,82 @@ const { badRequestError, internalServerError, notFoundError } = require("../help
 const {validString, validObjectId } = require("../helpers/validations");
 const dateString  = new Date().toISOString().split('T')[0];
 
+
+
+const updateAppointmentStatus = async (appId, status) => {
+  
+  try {
+    appId = appId.trim();
+    let statusStr = 'Accepted';
+    if(!status) statusStr = 'Declined'; 
+    const appointmentCollection = await appointments();    
+    const filter = { _id: ObjectId(appId) };
+    const update = { $set: { status: statusStr } };
+    const result = await appointmentCollection.updateOne(filter, update);
+
+    if (result.matchedCount === 1) {
+      // console.log(Updated status for appointment with appId ${appId} to ${statusStr});
+      return {
+        message: "Updated status for appointment with appId",
+        code: 200,
+      };
+    } else {
+      // console.log(Appointment with appId ${appId} not found.);
+      return {
+        message: "No appointments found with this ID!",
+        code: 404,
+      };
+    }
+  } catch (error) {
+    console.error('Error updating appointment status:', error);
+    return {
+      message: error,
+      code: 500,
+    };
+  }
+};
+
+
+const getPendingAppointment = async (userId) => {
+  
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+  const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$gte: dateString}, status:"Pending" }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+const getPast = async (userId) => {
+  
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+  const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$lt: dateString}, status: { $ne: "Pending" } }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+const getupComing = async (userId) => {
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+  const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$gte: dateString}, status: { $ne: "Pending" } }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+
+
 const getPastAppointment = async (userId) => {
   
   validObjectId(userId, "ID");
@@ -100,6 +176,10 @@ module.exports = {
   getPastAppointment,
   getUserByconsultant,
   getUserByprofessionalStaff,
-  getupComingAppointment
+  getupComingAppointment,
+  getPast,
+  getPendingAppointment,
+  getupComing,
+  updateAppointmentStatus
  
 };
