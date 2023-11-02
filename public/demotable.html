@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hrmony</title>
+    <!-- your CSS and other links go here -->
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <nav class="navbar bg-blue">
+        <!-- your navigation content goes here -->
+    </nav>
+
+    <main class="table">
+        <button onclick="toggleTable()">Show Table</button>
+
+        <section class="table__body" id="tableSection" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Patient id </th>
+                        <th> Name </th>
+                        <th> Gender </th>
+                        <th> Age </th>
+                        <th> Appoinment Time</th>
+                        <th> Appoinment Status </th>
+                        <th> Action </th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 1 </td>
+                        <td> Zinzu Chan Lee</td>
+                        <td> Male</td>
+                        <td> 17 ,  </td>
+                        <td>
+                            <p class="status delivered">10:30</p>
+                        </td>
+                        <td> <strong> Pending </strong></td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td> 2 </td>
+                        <td> Jeet Saru </td>
+                        <td> Male </td>
+                        <td> 27   </td>
+                        <td>
+                            <p class="status cancelled">10:30</p>
+                        </td>
+                        <td> <strong>Pending</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> 3</td>
+                        <td> Sonal Gharti </td>
+                        <td> Male </td>
+                        <td> 14   </td>
+                        <td>
+                            <p class="status shipped">10:30</p>
+                        </td>
+                        <td> <strong>Pending</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> 4</td>
+                        <td> Alson GC </td>
+                        <td> Male</td>
+                        <td> 25   </td>
+                        <td>
+                            <p class="status delivered">10:30</p>
+                        </td>
+                        <td> <strong>149.70</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> 5</td>
+                        <td> Sarita Limbu </td>
+                        <td> Male </td>
+                        <td> 23   </td>
+                        <td>
+                            <p class="status pending">10:30</p>
+                        </td>
+                        <td> <strong>399.99</strong> </td>
+                    </tr>
+                    <tr>
+                        <td> 6</td>
+                        <td>Alex Gonley </td>
+                        <td> Male </td>
+                        <td> 23   </td>
+                        <td>
+                            <p class="status cancelled">10:30</p>
+                        </td>
+                        <td> <strong>399.99</strong> </td>
+                    </tr>
+                    
+                      
+                
+                </tbody>
+            </table>
+        </section>
+
+        <p id="demo"></p>
+
+        <script>
+            function toggleTable() {
+                var tableSection = document.getElementById("tableSection");
+                if (tableSection.style.display === "none") {
+                    tableSection.style.display = "block";
+                    document.getElementById("demo").innerHTML = "Table is visible now!";
+                } else {
+                    tableSection.style.display = "none";
+                    document.getElementById("demo").innerHTML = "Table is hidden now!";
+                }
+            }
+        </script>
+    </main>
+</body>
+
+</html>
