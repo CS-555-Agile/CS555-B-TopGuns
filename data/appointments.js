@@ -44,6 +44,45 @@ const createAppointments = async (category, consultant_id, patient_id, time_slot
 
 
 
+const getPastAppointment = async (userId) => {
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+
+  const today = new Date(); // Get the current date and time
+  const currentDate = new Date();
+  const formattedDate = '2023-12-01'
+  //currentDate.toISOString().substr(0, 10);
+  const formattedTime = '10:00';
+  //currentDate.toTimeString().substr(0, 5);
+  
+  const userObject = await appointmentCollection.findOne( {
+    patient_id: ObjectId(userId), // Convert patient_id to ObjectId
+    date: { $lt: formattedDate }, // Date should be less than targetDate
+    time_slot: { $lt: formattedTime }, // Time should be less than targetTime
+  }).toArray();
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+
+const getupComingAppointment = async (userId) => {
+  validObjectId(userId, "ID");
+  userId = userId.trim();
+  const appointmentCollection = await appointments();
+  const userObject = await appointmentCollection.findOne( { patient_id: ObjectId(userId), date: {$gt: new Date()}, "time_slot": { $gt: new Date() } });
+  if (userObject === null)
+    throw {
+      message: "No appointments found with this ID!",
+      code: 404,
+    };
+  return userObject;
+};
+
+
 module.exports = {
   
   createAppointments,
