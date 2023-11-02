@@ -15,6 +15,8 @@ const static_ = express.static(__dirname + "/public");
 const loginRoutes = require('./routes/authRoutes');
 
 const Handlebars = require('handlebars');
+const handlebarsHelpers = require('handlebars-helpers');
+// Handlebars.registerHelpers(handlebarsHelpers);
 
 const handlebarsInstance = exphbs.create({
   defaultLayout: 'main',
@@ -61,7 +63,7 @@ app.use(async (req, res, next) => {
 // AUTH MIDDLEWARE FOR ALL PATHS EXCEPT AUTH PATHS
 app.use('*', async(req, res, next) => {
   const reqPath = req.originalUrl;
-  if (reqPath == '/login' || reqPath == '/signup') {
+  if (reqPath == '/login' || reqPath == '/signup' ) {
     if(req.session?.user?.verified) {
       return res.redirect("/home");
     }
@@ -70,7 +72,7 @@ app.use('*', async(req, res, next) => {
     .status(200)
     .render("landing/landingPage", {
       title: "LandingPage",
-      partial:"auth-script",
+      partial:"landing-script",
       css: "landing-css",
     });
   }
