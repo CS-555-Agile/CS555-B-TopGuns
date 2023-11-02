@@ -36,6 +36,10 @@ A life-end care application aka "HARMONY" is a digital tool designed to facilita
         - Codebase setup for frontend and backend
         - Basic login, signup and logout pages using user authorization
         - Created Postman collection for API Management
+    - Sprint2
+        - Appointment feature added for patients
+        - Feedback feature in progress
+        - Added new GET and POST API for backend in Postman collection
 
 <!-- ## 🐛 Bugs/Issues
 
