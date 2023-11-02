@@ -1,0 +1,209 @@
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <a href = "index.html" class = "navbar-brand">
+                    <img src = "../../public/images/logo.png" alt = "site logo">
+                </a>
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "../../public/images/ham-menu-icon.png">
+                </button>
+    
+            
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "/home" class = "nav-link">Home</a>
+                        </li>
+                        
+                        <li class = "nav-item">
+                            <a href = "/logout" class = "nav-link" >Logout</a>
+                        </li>
+                      
+                       
+                    </ul>
+                    
+                </div> 
+            </div>
+        </nav>
+    
+       
+            </div>
+        </div>
+    </header>
+  
+     
+        <!-- header -->
+      
+      
+       
+
+    <main class="table">
+    
+        
+            
+        
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                       <th> Patient id </th>
+                            <th> Appoinment Time  </th>
+                            <th> Date </th>
+                            <th> status </th>
+                            <th> Notes</th>
+                         <th> action</th>
+                  
+                      
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {{#if pending}}
+                            {{#each pending}}
+                                <tr>
+                                    <td> {{this.patient_id}} </td>
+                                    <td> {{this.time_slot}}</td>
+                                    <td> {{this.date}}</td>
+                                    <td>
+                                        <p class="status delivered">{{this.status}}</p>
+                                    </td>
+                                    <td> {{this.notes}}</td>
+                                    <td > 
+                                    <button  class="button" onclick="Accept('{{this._id}}')"> Accept</button> 
+                                    <button  class="button2" onclick="Decline('{{this._id}}')"> Decline</button> </td>
+                                </tr>
+                            {{/each}}
+                        {{/if}}
+
+                         
+                    </tr>
+                    
+                    
+                    
+                       
+                    
+                    
+                      
+                
+                </tbody>
+            </table>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
+            
+
+             
+                    <label class="dropdown"  onclick="scrollToContent()">
+
+                        <div class="dd-button"  onclick="toggleDropdown()">
+                          Upcoming Appoinments
+                        </div>
+                      
+                        <input type="checkbox" class="dd-input" id="test">
+                      
+                        <ul class="dd-menu">
+                            <section class="table__body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th> Patient id </th>
+                                            <th> Appoinment Time  </th>
+                                            <th> Date </th>
+                                            <th> status </th>
+                                            <th> Notes</th>
+                                                    
+                                         
+                                        </tr>
+                                    </thead>
+                                    <br> 
+                                    <tbody>
+                                        {{#if future}}
+                                            {{#each future}}
+                                                <tr>
+                                                    <td> {{this.patient_id}} </td>
+                                                    <td> {{this.time_slot}}</td>
+                                                    <td> {{this.date}}</td>
+                                                    <td>
+                                                        <p class="status delivered">{{this.status}}</p>
+                                                    </td>
+                                                    <td> {{this.notes}}</td>
+                                                    <td > 
+                                                    
+                                                </tr>
+                                            {{/each}}
+                                        {{/if}}
+                                      
+                                    </tbody>
+                                </table>
+                    
+                        </ul>
+                        
+                      </label>
+
+               <br>
+               <br>
+               
+                    <label class="dropdown1">
+
+                        <div class="dd-button1">
+                          Past Appoinment
+                        </div>
+                      
+                        <input type="checkbox" class="dd-input" id="test">
+                      
+                        <ul class="dd-menu1">
+                            <section class="table__body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th> Patient id </th>
+                                            <th> Appoinment Time  </th>
+                                            <th> Date </th>
+                                            <th> status </th>
+                                            <th> Notes</th>
+                                           
+                                            
+                                      
+                                          
+                                         
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if past}}
+                                            {{#each past}}
+                                                <tr>
+                                                    <td> {{this.patient_id}} </td>
+                                                    <td> {{this.time_slot}}</td>
+                                                    <td> {{this.date}}</td>
+                                                    <td>
+                                                        <p class="status delivered">{{this.status}}</p>
+                                                    </td>
+                                                    <td> {{this.notes}}</td>
+                                                    <td > 
+                                                    
+                                                </tr>
+                                            {{/each}}
+                                        {{/if}}
+                                       
+                                      
+                                    </tbody>
+                                </table>
+                    
+                        </ul>
+                        
+                      </label>
+       
+       
+                </div>
+        
+            
+        
+
+
+
+    </main>
