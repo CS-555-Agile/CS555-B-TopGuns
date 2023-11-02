@@ -35,7 +35,12 @@ router.route("/").get(async(req,res) => {
       });
     }
     else{
-      return res.redirect("/home")
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "home-css",
+        doctor:true
+      });
     }
     
   }
@@ -65,7 +70,12 @@ router
           });
         }
         else{
-          return res.redirect("/home")
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
         }
       }
     } catch (err) {
@@ -117,7 +127,12 @@ router
           });
         }
         else{
-          return res.redirect("/home")
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
         }
         // return res.status(200).redirect("/home");
       } else {
@@ -164,7 +179,12 @@ router
           });
         }
         else{
-          return res.redirect("/home")
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
         }
       }
     } catch (err) {
