@@ -20,10 +20,42 @@ function getCurrentTimestamp() {
   return formattedDate;
 }
 
-router.route("/").post(async (req, res) => {
+router.route("/").get(async (req, res) => {
+  //code here for GET
+  try {
+    if (!req.session.user?.verified || req.session.user.category!="patient") {
+      return res.redirect("/home");
+    } else {
+        // const past = await getPastAppointment(String(req.session.user._id));
+        // const future = await getupComingAppointment(String(req.session.user._id));
+        // console.log(past)
+        // console.log(future)
+      return res
+        .status(200)
+        .render("feedback", {
+          // past:past,
+          // future:future,
+          title: "Feedback",
+          partial: "feedback-script",
+          css: "feedback-css",
+          
+        });
+      
+    }
+  } catch (err) {
+    return res
+      .status(err?.status ?? 500)
+      .render("auth/signup", {
+        title: "Login",
+        partial: "signup-script",
+        css: "signup-css",
+      });
+  }
+})
+.post(async (req, res) => {
   console.log("POSTING A FEEDBACK..... ");
-  // const patientId = req.session.user._id
-  const patientId = "3454566767ebavd";
+  const patientId = String(req.session.user._id);
+  // const patientId = "3454566767ebavd";
 
   try {
     let {
@@ -32,26 +64,28 @@ router.route("/").post(async (req, res) => {
           subject, 
           rating
         } = req.body; 
+   
     staffId = xss(staffId);
     body = xss(body);
     subject = xss(subject);
     rating = xss(rating);
     
     const FeedbackObject = {
-      staffId: staffId,
+      staffId: String(staffId),
       body: body,
       subject: subject,
       patientId: patientId,
       rating: rating,
       timestamp: getCurrentTimestamp()
     }
-    
+    // console.log(FeedbackObject)
     const newFeedback = await createFeedback(FeedbackObject);
     if (!newFeedback.insertedFeedback) {
       console.log("Failed to post a feedback.");
       return res.status(err?.status ?? 500)
     } else {
-      return res.json("Feedback posted successfully. ");
+      // return res.json("Feedback posted successfully. ");
+      return res.redirect("/home");
     }
   } catch (err) {
     console.log("Erorr while creating a feedback: " + err);
