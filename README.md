@@ -38,6 +38,16 @@ A life-end care application aka "HARMONY" is a digital tool designed to facilita
         - Basic login, signup and logout pages using user authorization
         - Created Postman collection for API Management
 
+
+
+To Run the code 
+Step 1 - Add .env file with correct credentials
+step 2 - open terminal to the correct path and type "npm i" to download all dependencies
+Step 3 - open terminal to the correct path and type "npm start"
+
+To Run the test cases
+
+Step  - open terminal to the correct path and type "npm test"
 <!-- ## 🐛 Bugs/Issues
 
 - TODO
