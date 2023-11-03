@@ -1,3 +1,4 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/04f195745f3a4eb6b4c6ce73bc7fae60)](https://app.codacy.com/gh/vaishvik24/CS555-B-TopGuns/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 # CS 555: Agile Methods for Software Development 🎮 
 
 ##  ⏰ Estimated Time: 3 Months
