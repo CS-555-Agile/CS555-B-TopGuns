@@ -49,7 +49,7 @@ const getPendingAppointment = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$gte: dateString}, status:"Pending" }).toArray();
   if (userObject === null)
-    throw {
+    throw new {
       message: "No appointments found with this ID!",
       code: 404,
     };
@@ -62,7 +62,7 @@ const getPast = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$lt: dateString}, status: { $ne: "Pending" } }).toArray();
   if (userObject === null)
-    throw {
+    throw new {
       message: "No appointments found with this ID!",
       code: 404,
     };
@@ -74,7 +74,7 @@ const getupComing = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$gte: dateString}, status: { $ne: "Pending" } }).toArray();
   if (userObject === null)
-    throw {
+    throw new{
       message: "No appointments found with this ID!",
       code: 404,
     };
@@ -89,7 +89,7 @@ const getPastAppointment = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { patient_id: (userId), date: {$lt: dateString} }).toArray();
   if (userObject === null)
-    throw {
+    throw new{
       message: "No appointments found with this ID!",
       code: 404,
     };
@@ -101,7 +101,7 @@ const getupComingAppointment = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { patient_id: (userId), date: {$gte: dateString} }).toArray();
   if (userObject === null)
-    throw {
+    throw new{
       message: "No appointments found with this ID!",
       code: 404,
     };
@@ -112,7 +112,7 @@ const getUserByprofessionalStaff = async () => {
   const userCollection = await users();
   const userObject = await userCollection.find({ category:"professionalStaff" }).toArray();
   if (userObject === null)
-    throw {
+    throw new {
       message: "No user found as professional staff!",
       code: 404,
     };
@@ -123,7 +123,7 @@ const getUserByconsultant = async () => {
   const userCollection = await users();
   const userObject = await userCollection.find({ category:"consultant" }).toArray();
   if (userObject === null)
-    throw {
+    throw new{
       message: "No user found as consultant !",
       code: 404,
     };
@@ -159,12 +159,12 @@ const createAppointments = async (category, consultant_id, patient_id, time_slot
 
     const insertInfo = await appointmentsCollection.insertOne(newAppointments);
     if (!insertInfo.acknowledged || !insertInfo.insertedId)
-      throw internalServerError("Could not book appointment");
+      throw new internalServerError("Could not book appointment");
   
     return {bookedAppointment: true};
   } 
   catch (err) {
-    throw err;
+    throw new err;
   }
 };
 
