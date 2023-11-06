@@ -107,7 +107,7 @@ router.route("/").get(async (req, res) => {
     if (!newAppointment.bookedAppointment) {
       console.log(err, "Line 194");
       return res.status(err?.status ?? 500)
-    } else {
+    } else if {
       if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
             title: "Home",
