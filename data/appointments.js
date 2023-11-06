@@ -49,10 +49,7 @@ const getPendingAppointment = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$gte: dateString}, status:"Pending" }).toArray();
   if (userObject === null)
-    throw new {
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
+    throw new notFoundError("No appointments found with this ID");
   return userObject;
 };
 const getPast = async (userId) => {
@@ -62,10 +59,7 @@ const getPast = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$lt: dateString}, status: { $ne: "Pending" } }).toArray();
   if (userObject === null)
-    throw new {
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
+    throw new notFoundError("No appointments found with this ID");
   return userObject;
 };
 const getupComing = async (userId) => {
@@ -74,10 +68,7 @@ const getupComing = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { consultant_id: (userId), date: {$gte: dateString}, status: { $ne: "Pending" } }).toArray();
   if (userObject === null)
-    throw new{
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
+    throw new notFoundError("No appointments found with this ID");
   return userObject;
 };
 
@@ -89,10 +80,7 @@ const getPastAppointment = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { patient_id: (userId), date: {$lt: dateString} }).toArray();
   if (userObject === null)
-    throw new{
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
+    throw new notFoundError("No appointments found with this ID");
   return userObject;
 };
 const getupComingAppointment = async (userId) => {
@@ -101,10 +89,7 @@ const getupComingAppointment = async (userId) => {
   const appointmentCollection = await appointments();
   const userObject = await appointmentCollection.find( { patient_id: (userId), date: {$gte: dateString} }).toArray();
   if (userObject === null)
-    throw new{
-      message: "No appointments found with this ID!",
-      code: 404,
-    };
+    throw new notFoundError("No appointments found with this ID");
   return userObject;
 };
 const getUserByprofessionalStaff = async () => {
@@ -112,10 +97,7 @@ const getUserByprofessionalStaff = async () => {
   const userCollection = await users();
   const userObject = await userCollection.find({ category:"professionalStaff" }).toArray();
   if (userObject === null)
-    throw new {
-      message: "No user found as professional staff!",
-      code: 404,
-    };
+    throw new notFoundError("No Staff found with this ID");
   return userObject;
 };
 const getUserByconsultant = async () => {
@@ -123,10 +105,7 @@ const getUserByconsultant = async () => {
   const userCollection = await users();
   const userObject = await userCollection.find({ category:"consultant" }).toArray();
   if (userObject === null)
-    throw new{
-      message: "No user found as consultant !",
-      code: 404,
-    };
+    throw new notFoundError("No Consultant found with this ID");
   return userObject;
 };
 
