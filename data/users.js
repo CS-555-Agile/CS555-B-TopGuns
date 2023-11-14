@@ -155,6 +155,9 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
       email: emailInput,
       // dateOfBirth: DOBInput,
       profilePicture: null,
+      category:"Patient",
+      subcategory:"Patient"
+
     };
 
     const insertInfo = await userCollection.insertOne(newUser);

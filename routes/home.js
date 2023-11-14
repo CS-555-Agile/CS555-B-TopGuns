@@ -12,14 +12,29 @@ router
           userId = userId.trim();
           if(validatiion.validString(userId,"ID"));
           if(validatiion.validObjectId(userId,"ID"));
-    
-          return res
-          .status(200)
-          .render('home/homePage',{
-          partial: "home-script",
-          css: "home-css",
-          title:"Home",
-        });
+          if(req.session.user.category ==="patient"){
+            return res.render("home/homePage",{
+              title: "Home",
+              partial: "home-script",
+              css: "home-css",
+              patient:true
+            });
+          }
+          else{
+            return res.render("home/homePage",{
+              title: "Home",
+              partial: "home-script",
+              css: "home-css",
+              doctor:true
+            });
+          }
+        //   return res
+        //   .status(200)
+        //   .render('home/homePage',{
+        //   partial: "home-script",
+        //   css: "home-css",
+        //   title:"Home",
+        // });
       
       
     } 

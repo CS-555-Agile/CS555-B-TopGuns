@@ -1,25 +1,230 @@
-<section class="c-section">
-        <h2 class="c-section__title"><span>Our Services</span></h2>
-        <ul class="c-services">
-            <li class="c-services__item">
-                <h3>Music</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae turpis sit amet ipsum euismod accumsan. Sed ut leo vel orci malesuada lacinia.</p>
-            </li>
-            <li class="c-services__item">
-                <h3>Education and learning</h3>
-                <p>Phasellus tincidunt tortor eget tincidunt commodo. Sed in nulla eu risus sollicitudin dictum. Aliquam erat volutpat.</p>
-            </li>
-            <li class="c-services__item">
-                <h3>Feedback</h3>
-                <p>Integer eu felis eu justo malesuada vehicula. Sed dapibus purus et sapien pharetra aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras auctor, justo id venenatis pharetra, neque lorem convallis dolor, ac volutpat eros leo eget tellus.</p>
-            </li>
-            <li class="c-services__item">
-                <h3>Calls</h3>
-                <p>Ut auctor urna non sapien lacinia, nec volutpat libero suscipit. Morbi interdum tortor eget est volutpat, vel blandit lectus cursus. Aenean tristique, nulla vel eleifend bibendum, ligula nisi tincidunt arcu, id efficitur lorem justo id sapien.</p>
-            </li>
-            <li class="c-services__item">
-                <h3>Logout</h3>
-                <a class="nav-link ml-4 mr-4" href="/logout"><i class="fa-solid fa-sign-out fa-md"></i></a>
-            </li>
-        </ul>
-    </section>
+    
+
+    <!-- header -->
+    <header class = "header bg-blue">
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <a href = "index.html" class = "navbar-brand">
+                    <img src = "../../public/images/logo.png" alt = "site logo">
+                </a>
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "../../public/images/ham-menu-icon.png">
+                </button>
+
+                <div class = "navbar-collapse bg-white">
+                    <button type = "button" class = "navbar-hide-btn">
+                        <img src = "../../public/images/close-icon.png">
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Home</a>
+                        </li>
+                        
+                        {{#if patient}}
+                        <li class = "nav-item">
+                            <a href = "#" class = "nav-link">Entertainment</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/appointment" class = "nav-link">Book Appointment</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/feedbacks" class = "nav-link">Feedback</a>
+                        </li>
+                        {{/if}}
+                        
+                       
+                        <li class = "nav-item">
+                            <a href = "/logout" class = "nav-link" >Logout</a>
+                        </li>
+                      
+                      
+                      
+                       
+                    </ul>
+                    
+                </div> 
+            </div>
+        </nav>
+
+        <div class = "header-inner text-white text-center">
+            <div class = "container grid">
+                <div class = "header-inner-left">
+                    <h1>your most trusted<br> <span>health partner</span></h1>
+                    <p class = "lead">the best match services for you</p>
+                    <p class = "text text-md">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, nulla odit esse necessitatibus corporis voluptatem?</p>
+                  
+                </div>
+                <div class = "header-inner-right">
+                    <img src = "../../public/images/header.png">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end of header -->
+
+    <main>
+        <!-- about section -->
+        <section id = "about" class = "about py">
+            <div class = "about-inner">
+                <div class = "container grid">
+                    <div class = "about-left text-center">
+                        <div class = "section-head">
+                            <h2>About Us</h2>
+                            <div class = "border-line"></div>
+                        </div>
+                        <p class = "text text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae molestias delectus facilis, temporibus eum consectetur, a debitis exercitationem quae distinctio aliquid ea ipsam vitae esse amet soluta maxime dolorem? Inventore ut maiores illo ipsum nisi, nulla eligendi unde reiciendis quod voluptas velit sit voluptate perferendis cum pariatur molestiae tenetur repellat!</p>
+                        <a href = "#" class = "btn btn-white">Learn More</a>
+                    </div>
+                    <div class = "about-right flex">
+                        <div class = "img">
+                            <img src = "../../public/images/about-img.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end of about section -->
+
+       
+
+        <!-- services section -->
+        <section id = "services" class = "services py">
+            <div class = "container">
+                <div class = "section-head text-center">
+                    <h2 class = "lead">The Best Doctor gives the least medicines</h2>
+                    <p class = "text text-lg">A perfect way to show your hospital services</p>
+                    <div class = "line-art flex">
+                        <div></div>
+                        <img src = "../../public/images/4-dots.png">
+                        <div></div>
+                    </div>
+                </div>
+                <div class = "services-inner text-center grid">
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "../../public/images/service-icon-1.png">
+                        </div>
+                        <h3>Meetings</h3>
+                        <p class = "text text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis possimus doloribus facilis velit, assumenda tempora quas mollitia quos voluptatibus consequatur!</p>
+                    </article>
+
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "../../public/images/service-icon-2.png">
+                        </div>
+                        <h3>Entertainment</h3>
+                        <p class = "text text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis possimus doloribus facilis velit, assumenda tempora quas mollitia quos voluptatibus consequatur!</p>
+                    </article>
+
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "../../public/images/service-icon-3.png">
+                        </div>
+                        <h3>Feedback</h3>
+                        <p class = "text text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis possimus doloribus facilis velit, assumenda tempora quas mollitia quos voluptatibus consequatur!</p>
+                    </article>
+
+                    <article class = "service-item">
+                        <div class = "icon">
+                            <img src = "../../public/images/service-icon-4.png">
+                        </div>
+                        <h3>Music</h3>
+                        <p class = "text text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis possimus doloribus facilis velit, assumenda tempora quas mollitia quos voluptatibus consequatur!</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- end of services section -->
+
+        
+
+                    
+      
+
+        <!-- contact section -->
+        <section id = "contact" class = "contact py">
+            <div class = "container grid">
+                <div class = "contact-left">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2384.6268289831164!2d-6.214682984112116!3d53.29621947996855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486709e0c9c80f8f%3A0x92f408d10f2277c2!2sREVO!5e0!3m2!1sen!2snp!4v1636264848776!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class = "contact-right text-white text-center bg-blue">
+                    <div class = "contact-head">
+                        <h3 class = "lead">Contact Us</h3>
+                        <p class = "text text-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga.</p>
+                    </div>
+                    <form>
+                        <div class = "form-element">
+                            <input type = "text" class = "form-control" placeholder="Your name">
+                        </div>
+                        <div class = "form-element">
+                            <input type = "email" class = "form-control" placeholder="Your email">
+                        </div>
+                        <div class = "form-element">
+                            <textarea rows = "5" placeholder="Your Message" class = "form-control"></textarea>
+                        </div>
+                        <button type = "submit" class = "btn btn-white btn-submit">
+                            <i class = "fas fa-arrow-right"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- end of contact section -->
+    </main>
+
+    <!-- footer  -->
+    <footer id = "footer" class = "footer text-center">
+        <div class = "container">
+            <div class = "footer-inner text-white py grid">
+                <div class = "footer-item">
+                    <h3 class = "footer-head">about us</h3>
+                    <div class = "icon">
+                        <img src = "../../public/images/logo.png">
+                    </div>
+                    <p class = "text text-md">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis saepe incidunt fugiat optio corporis ea!</p>
+                   
+                </div>
+
+                <div class = "footer-item">
+                    <h3 class = "footer-head">tags</h3>
+                    <ul class = "tags-list flex">
+                        <li>medical care</li>
+                        <li>emergency</li>
+                        <li>therapy</li>
+                        <li>surgery</li>
+                        <li>medication</li>
+                        <li>nurse</li>
+                    </ul>
+                </div>
+
+                <div class = "footer-item">
+                    <h3 class = "footer-head">Quick Links</h3>
+                    <ul>
+                        <li><a href = "#" class = "text-white">Our Services</a></li>
+                        <li><a href = "#" class = "text-white">Our Plan</a></li>
+                        <li><a href = "#" class = "text-white">Privacy Policy</a></li>
+                        <li><a href = "#" class = "text-white">Appointment Schedule</a></li>
+                    </ul>
+                </div>
+
+                <div class = "footer-item">
+                    <h3 class = "footer-head">make an appointment</h3>
+                    <p class = "text text-md">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, omnis.</p>
+                    <ul class = "appointment-info">
+                        <li>8:00 AM - 11:00 AM</li>
+                        <li>2:00 PM - 05:00 PM</li>
+                        <li>8:00 PM - 11:00 PM</li>
+                       
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "footer-links">
+                <ul class = "flex">
+                    <li><a href = "#" class = "text-white flex"> <i class = "fab fa-facebook-f"></i></a></li>
+                    <li><a href = "#" class = "text-white flex"> <i class = "fab fa-twitter"></i></a></li>
+                    <li><a href = "#" class = "text-white flex"> <i class = "fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>

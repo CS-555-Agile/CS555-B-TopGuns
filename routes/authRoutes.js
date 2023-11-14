@@ -21,10 +21,28 @@ router.route("/").get(async(req,res) => {
           .status(200)
           .render("landing/landingPage", {
             title: "LandingPage",
-            css: "auth-css",
+            partial: "landing-script",
+            css: "landing-css",
           });
   } else {
-    return res.redirect("/home");
+    
+    if(req.session.user.category ==="patient"){
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "home-css",
+        patient:true
+      });
+    }
+    else{
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "home-css",
+        doctor:true
+      });
+    }
+    
   }
 })
 
@@ -42,7 +60,23 @@ router
             css: "signup-css",
           });
       } else {
-        return res.redirect("/home");
+        // return res.redirect("/home");
+        if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
+        }
       }
     } catch (err) {
       return res
@@ -79,10 +113,28 @@ router
 
       const existingUser = await userData.checkUser(emailInput, passwordInput);
       if (existingUser) {
+        // console.log(existingUser);
         req.session.user = existingUser;
         req.session.user.verified = true;
         // return res.redirect("otp");
-        return res.status(200).redirect("/home");
+        console.log(req.session.user.category)
+        if(req.session.user.category ==="patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
+        }
+        // return res.status(200).redirect("/home");
       } else {
         console.log("Line 115 .......", err);
         return res.status(err?.status ?? 500).render("auth/signup", {
@@ -117,7 +169,23 @@ router
             css: "signup-css",
           });
       } else {
-        return res.redirect("/home");
+        // return res.redirect("/home");
+        if(req.session.user.category === "patient"){
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            patient:true
+          });
+        }
+        else{
+          return res.render("home/homePage",{
+            title: "Home",
+            partial: "home-script",
+            css: "home-css",
+            doctor:true
+          });
+        }
       }
     } catch (err) {
       console.log(err);
@@ -208,7 +276,7 @@ router.route("/logout").get(async (req, res) => {
   req.session.destroy();
   return res.render("landing/landingPage", {
     title: "Logged out",
-    partial: "auth-script",
+    partial: "landing-script",
     css: "landing-css",
   });
 });
