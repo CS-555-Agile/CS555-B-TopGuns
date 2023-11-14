@@ -5,14 +5,6 @@ const saltRounds= 11
 const { badRequestError, internalServerError, notFoundError } = require("../helpers/wrappers");
 const { validEmail, validName, validUsername, validPassword, validDate, validDOB, validString, validObjectId } = require("../helpers/validations");
 
-// const getAllUsers = async () => {
-//   const userCollection = await users();
-//   const userList = await userCollection.find({}).toArray();
-//   if (!userList)
-//     throw { message: "Could not get all the users!", code: 404 };
-//   return userList;
-// };
-
 const getUserById = async (userId) => {
   validObjectId(userId, "ID");
   userId = userId.trim();
@@ -122,13 +114,9 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
     if (!firstnameInput || !lastnameInput || !emailInput || !passwordInput) throw `All fields must be supplied!`;
     validName(firstnameInput);
     validName(lastnameInput);
-    // validDate(DOBInput);
-    // validDOB(DOBInput);
     validEmail(emailInput);
-    // validUsername(usernameInput);
     validPassword(passwordInput);
 
-    // const takenUser = await getUserByUsername(usernameInput);
     // if (takenUser) throw `Username already taken!`;
     const takenEmail = await getUserByEmail(emailInput);
     if (takenEmail) throw `Email already registered to another account!`;
@@ -139,9 +127,7 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
   // Trim inputs
   firstnameInput = firstnameInput.trim();
   lastnameInput = lastnameInput.trim();
-  // DOBInput = DOBInput.trim();
   emailInput = emailInput.trim().toLowerCase();
-  // usernameInput = usernameInput.trim().toLowerCase();
 
   // Mongo Collection operations and password hashing
   try {

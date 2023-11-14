@@ -7,10 +7,10 @@ const getFeedbacksPatients = async (patientId) => {
     try {
         let feedbacksCollection = await feedbacks();
         let feedbacksList = await feedbacksCollection.find({patientId: patientId}).toArray();
-        // console.log(feedbacksList);
+        
         return feedbacksList;
     } catch (err) {
-        // console.log(err);
+        
         throw (err);
     }
 }
@@ -19,10 +19,10 @@ const getFeedbacksStaff = async (staffId) => {
     try {
         let feedbacksCollection = await feedbacks();
         let feedbacksList = await feedbacksCollection.find({staffId: staffId}).toArray();
-        // console.log(feedbacksList);
+        
         return feedbacksList;
     } catch (err) {
-        // console.log(err);
+        
         throw (err);
     }
 }
@@ -50,7 +50,7 @@ const createFeedback = async (feedbackObject) => {
   
         const feedbacksCollection = await feedbacks();
 
-        // console.log(feedbackObject);
+        
         const insertInfo = await feedbacksCollection.insertOne(feedbackObject);
         if (!insertInfo.acknowledged || !insertInfo.insertedId)
             throw internalServerError("Failed to add give feedback.");
