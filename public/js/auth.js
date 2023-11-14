@@ -106,9 +106,6 @@ $(document).ready(function() {
       };
       $.ajax(requestConfig).then(function (responseMessage) {
         if (responseMessage != false) {
-          // $("[name=" + id + "]")
-          //   .parent()
-          //   .remove();
           console.log(responseMessage);
         } else {
           // no accepted

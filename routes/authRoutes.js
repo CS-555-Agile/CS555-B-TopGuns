@@ -16,7 +16,6 @@ const {
 router.route("/").get(async(req,res) => {
   console.log("Root route");
   if(!req.session.user || !req.session.user.verified) {
-    // return res.redirect("/login");
     return res
           .status(200)
           .render("landing/landingPage", {
@@ -24,9 +23,7 @@ router.route("/").get(async(req,res) => {
             partial: "landing-script",
             css: "landing-css",
           });
-  } else {
-    
-    if(req.session.user.category ==="patient"){
+  } else if(req.session.user.category ==="patient"){
       return res.render("home/homePage",{
         title: "Home",
         partial: "home-script",
@@ -43,7 +40,6 @@ router.route("/").get(async(req,res) => {
       });
     }
     
-  }
 })
 
 router
@@ -60,7 +56,6 @@ router
             css: "signup-css",
           });
       } else {
-        // return res.redirect("/home");
         if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
             title: "Home",
@@ -113,10 +108,8 @@ router
 
       const existingUser = await userData.checkUser(emailInput, passwordInput);
       if (existingUser) {
-        // console.log(existingUser);
         req.session.user = existingUser;
         req.session.user.verified = true;
-        // return res.redirect("otp");
         console.log(req.session.user.category)
         if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
@@ -134,7 +127,6 @@ router
             doctor:true
           });
         }
-        // return res.status(200).redirect("/home");
       } else {
         console.log("Line 115 .......", err);
         return res.status(err?.status ?? 500).render("auth/signup", {
@@ -169,7 +161,6 @@ router
             css: "signup-css",
           });
       } else {
-        // return res.redirect("/home");
         if(req.session.user.category === "patient"){
           return res.render("home/homePage",{
             title: "Home",
@@ -210,9 +201,6 @@ router
       validEmail(emailInput);
       validName(firstnameInput);
       validName(lastnameInput);
-      // validDate(DOBInput);
-      // validDOB(DOBInput);
-      // validUsername(usernameInput);
       validPassword(passwordInput);
     } catch (err) {
       console.log(err, "Line 160");
@@ -234,8 +222,6 @@ router
       } = req.body;
       firstnameInput = xss(firstnameInput);
       lastnameInput = xss(lastnameInput);
-      // DOBInput = xss(DOBInput);
-      // usernameInput = xss(usernameInput);
       emailInput = xss(emailInput);
       passwordInput = xss(passwordInput);
 

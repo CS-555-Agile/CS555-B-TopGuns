@@ -20,13 +20,11 @@ const { ObjectId } = require("mongodb");
 
 router.route("/").get(async (req, res) => {
   try {
-    // validObjectId(req.session.userId);
     validObjectId(req.session.user._id);
   } catch (error) {
     res.status(400).send(error);
   }
   try {
-    // const user = await getUserById(req.session.userId);
     const user = await getUserById(req.session.user._id);
     const postsCollection = await posts();
     const allUserPosts = [];
@@ -97,10 +95,7 @@ router.route("/:userId").put(async (req, res) => {
 
   try {
     validString(user.userName, "Username");
-    // validString(user.firstName, "First Name");
-    // validString(user.lastName, "Last Name");
     validEmail(user.email, "Email");
-    // validString(user.dateOfBirth, "DOB");
   } catch (error) {
     res.status(400).send(error);
   }
@@ -135,11 +130,11 @@ router.route("/:userId").put(async (req, res) => {
 router.route("/searchUsers/").get(async (req, res) => {
   try {
     const searchtext = req?.body?.user;
-    if (!searchtext || typeof searchtext != 'string' || searchtext.trim().length === 0) throw `Search Text not supplied`;
+    if (!searchtext || typeof searchtext != 'string' || searchtext.trim().length === 0) throw new Error(`Search Text not supplied`);
   } catch (err) {
     return res.status(400).json({error: err});
   }
-  const searchtext = req?.body?.user;
+  let searchtext = req?.body?.user;
   searchtext = xss(searchtext.trim());
   try {
     const matchedUsers = await searchUsers(searchtext);

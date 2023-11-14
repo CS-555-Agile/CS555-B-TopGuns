@@ -26,10 +26,6 @@ router.route("/").get(async (req, res) => {
     if (!req.session.user?.verified || req.session.user.category!="patient") {
       return res.redirect("/home");
     } else {
-        // const past = await getPastAppointment(String(req.session.user._id));
-        // const future = await getupComingAppointment(String(req.session.user._id));
-        // console.log(past)
-        // console.log(future)
       return res
         .status(200)
         .render("feedback", {
@@ -55,7 +51,6 @@ router.route("/").get(async (req, res) => {
 .post(async (req, res) => {
   console.log("POSTING A FEEDBACK..... ");
   const patientId = String(req.session.user._id);
-  // const patientId = "3454566767ebavd";
 
   try {
     let {
@@ -78,13 +73,11 @@ router.route("/").get(async (req, res) => {
       rating: rating,
       timestamp: getCurrentTimestamp()
     }
-    // console.log(FeedbackObject)
     const newFeedback = await createFeedback(FeedbackObject);
     if (!newFeedback.insertedFeedback) {
       console.log("Failed to post a feedback.");
       return res.status(err?.status ?? 500)
     } else {
-      // return res.json("Feedback posted successfully. ");
       return res.redirect("/home");
     }
   } catch (err) {
