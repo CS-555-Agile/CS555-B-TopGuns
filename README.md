@@ -1,3 +1,6 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/04f195745f3a4eb6b4c6ce73bc7fae60)](https://app.codacy.com/gh/vaishvik24/CS555-B-TopGuns/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CS-555-Agile_CS555-B-TopGuns&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CS-555-Agile_CS555-B-TopGuns)
+
 # CS 555: Agile Methods for Software Development 🎮 
 
 ##  ⏰ Estimated Time: 3 Months
@@ -11,6 +14,7 @@
 | 20010946    |    Archi Patel    | Frontend Developer | 
 | 20012658     |   Shiv Shah  | Frontend + Backend Developer | 
 | 20010614    |  Hiral Makwana  |Frontend Developer/ QA |
+
 
 ## About Project
 
@@ -50,6 +54,16 @@ A life-end care application aka "HARMONY" is a digital tool designed to facilita
 
     Step 1 - open terminal to the correct path and type "npm test"
 
+
+
+To Run the code 
+Step 1 - Add .env file with correct credentials
+step 2 - open terminal to the correct path and type "npm i" to download all dependencies
+Step 3 - open terminal to the correct path and type "npm start"
+
+To Run the test cases
+
+Step  - open terminal to the correct path and type "npm test"
 <!-- ## 🐛 Bugs/Issues
 
 - TODO
