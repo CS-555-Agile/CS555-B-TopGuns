@@ -109,10 +109,17 @@ const getUserByconsultant = async () => {
   return userObject;
 };
 
+function MissingFieldsError(message) {
+  this.name = 'MissingFieldsError';
+  this.message = message || 'All fields must be supplied!';
+  this.stack = new Error().stack;
+}
+
+
 const createAppointments = async (category, consultant_id, patient_id, time_slot, date,notes) => {
   // Validations
   try {
-    if (!category || !consultant_id || !patient_id || !time_slot || !date) throw new `All fields must be supplied!`;
+    if (!category || !consultant_id || !patient_id || !time_slot || !date) throw new MissingFieldsError();
     //add validations
     //check time
 

@@ -30,15 +30,15 @@ const getFeedbacksStaff = async (staffId) => {
 const createFeedback = async (feedbackObject) => {
     // Validations
     try {
-        if (!feedbackObject.staffId) throw `Staff Id is mandatory field.`;
-        if (!feedbackObject.patientId) throw `Patient Id is mandatory field.`;
-        if (!feedbackObject.subject) throw `Subject/Title is mandatory field.`;
-        if (!feedbackObject.body) throw `Body is mandatory field.`;
-        if (!feedbackObject.rating) throw `Rating is mandatory field.`;
-        if (!feedbackObject.timestamp) throw `Timestamp is mandatory field.`;
+        if (!feedbackObject.staffId) throw new Error(`Staff Id is mandatory field.`);
+        if (!feedbackObject.patientId) throw new Error(`Patient Id is mandatory field.`);
+        if (!feedbackObject.subject) throw new Error(`Subject/Title is mandatory field.`);
+        if (!feedbackObject.body) throw new Error(`Body is mandatory field.`);
+        if (!feedbackObject.rating) throw new Error(`Rating is mandatory field.`);
+        if (!feedbackObject.timestamp) throw new Error(`Timestamp is mandatory field.`);
 
         if(!(feedbackObject.rating >= 0 && feedbackObject.rating <= 10)) {
-          throw `Rating has to be in scale of 1-10`;
+          throw new Error(`Rating has to be in scale of 1-10`);
         }
         // Trim inputs
         feedbackObject.staffId = feedbackObject.staffId.trim();
@@ -46,20 +46,23 @@ const createFeedback = async (feedbackObject) => {
         feedbackObject.subject = feedbackObject.subject.trim();
         feedbackObject.body = feedbackObject.body.trim();
         feedbackObject.rating = feedbackObject.rating.trim();
-        feedbackObject.timestamp = feedbackObject.timestamp;
+        //feedbackObject.timestamp = feedbackObject.timestamp;
   
         const feedbacksCollection = await feedbacks();
 
-        
         const insertInfo = await feedbacksCollection.insertOne(feedbackObject);
-        if (!insertInfo.acknowledged || !insertInfo.insertedId)
-            throw internalServerError("Failed to add give feedback.");
-            return {insertedFeedback: true};
-        } 
-        catch (err) {
+        try {
+            if (!insertInfo.acknowledged || !insertInfo.insertedId) {
+                throw internalServerError("Failed to add give feedback.");
+            }
+            return { insertedFeedback: true };
+        } catch (err) {
             console.log("Error while creating feedback: " + err);
             throw err;
         }
+        
+
+        
 }
 
 module.exports = {
