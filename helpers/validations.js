@@ -46,23 +46,19 @@ const validName = function error_handling_for_name(inputName, inputParameter) {
    * @throws {Format1} `inputParameter + " must be atleast 3 character long and should not contain special characters or numbers"`
    * @throws {Format2} `inputParameter + " should be in valid format`
    */
-  if (!inputName) throw `Please provide ${inputParameter}!`;
+  if (!inputName) throw new Error(`Please provide ${inputParameter}!`);
   if (typeof inputName !== "string" || typeof inputName === "undefined")
     throw inputParameter + " must be a string!";
   if (inputName.trim().length === 0)
-    throw (
-      inputParameter + " cannot be an empty string or string with just spaces!"
-    );
+    throw new Error(inputParameter + " cannot be an empty string or string with just spaces!");
+
   const name = inputName.trim().split(" ");
   if (name.length > 1) {
-    throw inputParameter + " should be in valid format!";
+    throw new Error(inputParameter + " should be in valid format!");
   } else {
     let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
     if (inputName.length < 3 || format.test(inputName)) {
-      throw (
-        inputParameter +
-        " must be atleast 3 characters long and should not contain special characters or numbers!"
-      );
+      throw new Error(inputParameter + " must be atleast 3 characters long and should not contain special characters or numbers!");
     }
   }
 };
@@ -85,44 +81,43 @@ const validLogin = function error_handling_for_login(
   let password_format = /^(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/g;
   inputUsername = inputUsername.trim();
   if (!inputUsername || !inputPassword)
-    throw "You must provide username and password!";
+    throw new Error("You must provide username and password!");
   if (typeof inputUsername !== "string" || typeof inputUsername === "undefined")
-    throw "Username must be a string!";
+    throw new Error("Username must be a string!");
   if (typeof inputPassword !== "string" || typeof inputPassword === "undefined")
-    throw "Password must be a string!";
+    throw new Error("Password must be a string!");
   if (inputUsername.length < 4)
-    throw "Username should be at least 4 characters long!";
-  // if(spaces.test(inputUsername)) throw 'Username cannot contain spaces';
+    throw new Error("Username should be at least 4 characters long!");
   if (format.test(inputUsername))
-    throw "Please enter valid username .i.e without special characters or spaces!";
+    throw new Error("Please enter valid username .i.e without special characters or spaces!");
   if (inputPassword.length < 6)
-    throw "Password should be at least 6 characters long!";
+    throw new Error("Password should be at least 6 characters long!");
   if (spaces.test(inputPassword)) throw "Password cannot contain spaces!";
   if (!password_format.test(inputPassword))
-    throw "Password should contain at least one uppercase character, at least one number and at least one special character!";
+    throw new Error("Password should contain at least one uppercase character, at least one number and at least one special character!");
 };
 const validEmail = function error_handling_for_email(inputEmail) {
   /**
    * @param {inputEmail} string - The input given by the user to be validated as a valid email address
    * @throws {emailFormat} `"Please enter valid Email Address" `
    */
-  let emailFormat =
-    /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/g;
+  
+  let emailFormat = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g;
   inputEmail = inputEmail.trim();
   if (!inputEmail) throw "You must provide Email Address!";
   if (typeof inputEmail !== "string" || typeof inputEmail === "undefined")
-    throw "Email Address must be a string!";
+    throw new Error("Email Address must be a string!");
   if (!emailFormat.test(inputEmail))
-    throw "Please enter a valid Email Address!";
+    throw new Error("Please enter a valid Email Address!");
 };
 
 
 const validUsername = (username) => {
   if (!username || typeof username != "string" || username.trim().length === 0)
-    throw `Missing Username`;
+    throw new Error(`Missing Username`);
   username = username.trim();
   const usernameRegex = /^[a-z0-9]{4,}$/i;
-  if (!usernameRegex.test(username)) throw `Invalid Username: The username must be only alphanumeric and have atleast 4 characters`;
+  if (!usernameRegex.test(username)) throw new Error(`Invalid Username: The username must be only alphanumeric and have atleast 4 characters`);
 };
 
 const validPassword = (password) => {
@@ -133,9 +128,10 @@ const validPassword = (password) => {
    * character, there has to be at least one number and there has to be at least one special character:
    * for example:  Not valid: test123, test123$, foobar, tS12$ Valid: Test123$, FooBar123*, HorsePull748*% */
   if (!password || typeof password != "string" || password.trim().length === 0)
-    throw `Missing Password`;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}$/;
-  if (!passwordRegex.test(password)) throw `Invalid Password: The password must contain atleast 1 uppercase character, 1 lowercase character, 1 number, 1 special character and be atleast 8 characters long`;
+    throw new Error(`Missing Password`);
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[a-zA-Z\d$@$!%*?&_]{8,}$/;
+
+  if (!passwordRegex.test(password)) throw new Error(`Invalid Password: The password must contain atleast 1 uppercase character, 1 lowercase character, 1 number, 1 special character and be atleast 8 characters long`);
   return true;
 };
 
@@ -143,13 +139,13 @@ const validPassword = (password) => {
 
 const validDate = (dateString) => {
   if (!dateString || typeof dateString != "string" || dateString.trim().length === 0)
-  throw `Missing Date`;
-  if (!moment(dateString, 'YYYY-MM-DD',true).isValid()) throw `Invalid Date`;
+  throw new Error(`Missing Date`);
+  if (!moment(dateString, 'YYYY-MM-DD',true).isValid()) throw new Error(`Invalid Date`);
 };
 
 const validDOB = (dateString) => {
   var dobDate = moment().diff(dateString, 'years');
-  if (dobDate < 13) throw  `You must be atleast 13 years of age!`;
+  if (dobDate < 13) throw  new Error(`You must be atleast 13 years of age!`);
 };
 
 module.exports = {
@@ -160,7 +156,6 @@ module.exports = {
   validEmail: validEmail,
   validUsername,
   validPassword,
-  validDate,
   validDOB,
   validDate: validDate
 };
