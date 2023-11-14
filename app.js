@@ -65,7 +65,7 @@ app.use('*', async(req, res, next) => {
     if(req.session?.user?.verified) {
       return res.redirect("/home");
     }
-  } else if (!req.session.user || !req.session.user.verified) {
+  } else if (!req.session.user?.verified) {
     return res
     .status(200)
     .render("landing/landingPage", {
