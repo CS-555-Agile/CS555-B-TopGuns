@@ -2,7 +2,6 @@
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
-// const BodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const { ObjectId } = require("mongodb");
 const configRoutes = require("./routes");
@@ -16,7 +15,6 @@ const loginRoutes = require('./routes/authRoutes');
 
 const Handlebars = require('handlebars');
 const handlebarsHelpers = require('handlebars-helpers');
-// Handlebars.registerHelpers(handlebarsHelpers);
 
 const handlebarsInstance = exphbs.create({
   defaultLayout: 'main',
