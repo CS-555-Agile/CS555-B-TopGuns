@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('./app'); 
 const os = require('os');
+const { Builder, By, Key, until } = require('selenium-webdriver')
+const assert = require('assert')
+
 describe('Route Tests after login', () => {
 
 
@@ -115,6 +118,26 @@ describe('Route Tests after login', () => {
     expect(bookAppointmentResponse.status).toBe(200);
    
   });
-  
+   //testing with UI
+  let driver
+  let vars
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser('chrome').build()
+    vars = {}
+  })
+  afterEach(async function() {
+    await driver.quit();
+  })
+  it('Harmony', async function() {
+    await driver.get("http://localhost:3000/login")
+    await driver.manage().window().setRect({ width: 1526, height: 959 })
+    await driver.findElement(By.id("emailInput")).click()
+    await driver.findElement(By.id("emailInput")).sendKeys("testdev@gmail.com")
+    await driver.findElement(By.id("passwordInput")).click()
+    await driver.findElement(By.id("passwordInput")).sendKeys("1911194@Sweet")
+    await driver.findElement(By.css(".solid")).click()
+    await driver.findElement(By.css("body")).click()
+    await driver.findElement(By.id("about")).click()
+  });
 });
 
