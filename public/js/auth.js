@@ -39,17 +39,18 @@ $(document).ready(function() {
     // Username validation
     let username = $("#usernameInput").val();
     const usernameRegex = /^[a-z0-9]{4,}$/i;
+    
     if (!username || typeof username != "string" || username.trim().length === 0) {
       $("#error-div").text("Missing Username");
       signupBool = false;
     } else if (!usernameRegex.test(username)) {
       $("#error-div").text("Invalid Username: The username must be only alphanumeric and have atleast 4 characters");
       signupBool = false;
-    };
+    }
 
     // Email validation
     let email = $("#emailInput").val();
-    const emailFormat = /^([a-zA-Z0-9_\-\.]+)@((\[[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[\d]{1,3})(\]?)$/g;
+    const emailFormat = /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*@[a-zA-Z0-9\-]+(\.[a-zA-Z]{2,4}|\.\d{1,3}\.\d{1,3}\.\d{1,3})$/;
     if (!email || typeof email != "string" || email.trim().length === 0) {
       $("#error-div").text("Missing Email");
       signupBool = false;
