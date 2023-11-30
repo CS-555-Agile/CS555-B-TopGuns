@@ -137,7 +137,7 @@ const validPassword = (password) => {
    * for example:  Not valid: test123, test123$, foobar, tS12$ Valid: Test123$, FooBar123*, HorsePull748*% */
   if (!password || typeof password != "string" || password.trim().length === 0)
     throw new Error(`Missing Password`);
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[a-zA-Z\d$@!%*?&_]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_])[a-zA-Z\d$@!%*?&_]{8,}$/;
   if (!passwordRegex.test(password)) throw new Error(`Invalid Password: The password must contain atleast 1 uppercase character, 1 lowercase character, 1 number, 1 special character and be atleast 8 characters long`);
   return true;
 };

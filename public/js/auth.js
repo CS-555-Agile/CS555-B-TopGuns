@@ -19,7 +19,7 @@ $(document).ready(function() {
       $("#error-div").text("Missing Firstname");
       signupBool = false;
     }
-    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
+    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>?~]/;
     if (firstname.length < 3 || format.test(firstname)) {
       $("#error-div").text("Firstname must be atleast 3 characters long and should not contain special characters or numbers");
       signupBool = false;
@@ -39,14 +39,17 @@ $(document).ready(function() {
     // Username validation
     let username = $("#usernameInput").val();
     const usernameRegex = /^[a-z0-9]{4,}$/i;
-    
-    if (!username || typeof username != "string" || username.trim().length === 0) {
+
+    if (!username || typeof username !== "string" || username.trim().length === 0) {
       $("#error-div").text("Missing Username");
       signupBool = false;
-    } else if (!usernameRegex.test(username)) {
-      $("#error-div").text("Invalid Username: The username must be only alphanumeric and have atleast 4 characters");
+    }
+    
+    if (!usernameRegex.test(username)) {
+      $("#error-div").text("Invalid Username: The username must be only alphanumeric and have at least 4 characters");
       signupBool = false;
     }
+    
 
     // Email validation
     let email = $("#emailInput").val();
