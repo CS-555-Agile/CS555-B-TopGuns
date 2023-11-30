@@ -131,7 +131,14 @@ $(document).ready(function () {
             audio.play();
         };
 
-        extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
+        let extension = '';
+if (audio.canPlayType('audio/mpeg')) {
+  extension = '.mp3';
+} else if (audio.canPlayType('audio/ogg')) {
+  extension = '.ogg';
+}
+
+
         loadTrack(index);
     } else {
         // No audio support

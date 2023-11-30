@@ -29,8 +29,11 @@ router.route("/").get(async (req, res) => {
     const postsCollection = await posts();
     const allUserPosts = [];
 
-    if(!user.userPosts.length) 
-      throw {message: "User has no posts yet!", code: 404};
+    if(!user.userPosts.length) {
+      const error = new Error("User has no posts yet!");
+      error.code = 404;
+      throw error;
+    }
     for (const postId of user.userPosts) {
       const post = await postsCollection.findOne({_id: ObjectId(postId)});
       allUserPosts.push(post);
@@ -80,18 +83,16 @@ router.route("/:userId").put(async (req, res) => {
   }
 
   let user = req.body;
+  
   try {
-    if (
-      !user.userName ||
-      // !user.firstName ||
-      // !user.lastName ||
-      !user.email
-      // !user.dateOfBirth
-    )
+    if (!user.userName || !user.email) {
       throw { message: "All fields must be supplied!", code: 400 };
+    }
   } catch (error) {
     res.status(error.code).send(error.message);
   }
+  
+
 
   try {
     validString(user.userName, "Username");

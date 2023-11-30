@@ -15,7 +15,8 @@ const {
 
 router.route("/").get(async(req,res) => {
   console.log("Root route");
-  if(!req.session.user || !req.session.user.verified) {
+  
+  if (!req.session.user?.verified) {
     return res
           .status(200)
           .render("landing/landingPage", {
@@ -55,8 +56,7 @@ router
             partial: "signup-script",
             css: "signup-css",
           });
-      } else {
-        if(req.session.user.category ==="patient"){
+      } else if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
@@ -72,7 +72,6 @@ router
             doctor:true
           });
         }
-      }
     } catch (err) {
       return res
         .status(err?.status ?? 500)
@@ -152,7 +151,7 @@ router
   .get(async (req, res) => {
     //code here for GET
     try {
-      if (!req.session.user || !req.session.user.verified) {
+      if (!req.session.user?.verified) {
         return res
           .status(200)
           .render("auth/signup", {
@@ -160,8 +159,7 @@ router
             partial: "signup-script",
             css: "signup-css",
           });
-      } else {
-        if(req.session.user.category === "patient"){
+      } else if(req.session.user.category === "patient"){
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
@@ -177,7 +175,6 @@ router
             doctor:true
           });
         }
-      }
     } catch (err) {
       console.log(err);
       return res.status(err?.status ?? 500).render("auth/signup", {
