@@ -197,7 +197,7 @@ router
         // usernameInput,
         emailInput,
         passwordInput,
-      } = req.body; // TODO: Input Validation
+      } = req.body; 
       validEmail(emailInput);
       validName(firstnameInput);
       validName(lastnameInput);

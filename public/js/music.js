@@ -42,13 +42,15 @@ $(document).ready(function () {
                 trackNumber = '0' + trackNumber;
             }
 
-            $('#plList').append('<li> \
-                <div class="plItem"> \
-                    <span class="plNum">' + trackNumber + '.</span> \
-                    <span class="plTitle">' + trackName + '</span> \
-                    <span class="plLength">' + trackDuration + '</span> \
-                </div> \
-            </li>');
+            $('#plList').append(`
+            <li>
+                <div class="plItem">
+                    <span class="plNum">${trackNumber}.</span>
+                    <span class="plTitle">${trackName}</span>
+                    <span class="plLength">${trackDuration}</span>
+                </div>
+            </li>
+        `);
         });
 
         var trackCount = tracks.length,
@@ -74,7 +76,7 @@ $(document).ready(function () {
                 }
             }).get(0);
 
-        var btnPrev = $('#btnPrev').on('click', function () {
+            $('#btnPrev').on('click', function () {    
             if ((index - 1) > -1) {
                 index--;
                 loadTrack(index);
@@ -88,7 +90,7 @@ $(document).ready(function () {
             }
         });
 
-        var btnNext = $('#btnNext').on('click', function () {
+        $('#btnNext').on('click', function () {
             if ((index + 1) < trackCount) {
                 index++;
                 loadTrack(index);
@@ -102,7 +104,7 @@ $(document).ready(function () {
             }
         });
 
-        var li = $('#plList li').on('click', function () {
+        $('#plList li').on('click', function () {
             var id = parseInt($(this).index());
             if (id !== index) {
                 playTrack(id);

@@ -436,7 +436,7 @@ thead th.active,tbody td.active {
   
   .dd-button:after {
 
-    padding: top 10px; ;
+    padding: top 10px;
     content: '';
     position: absolute;
     top: 50%;
