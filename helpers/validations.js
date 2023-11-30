@@ -13,13 +13,16 @@ const validString = function error_handling_for_string(
    * @param {inputParameter} string - The name of the input variable
    * @throws {MissingInput} `Please provide ${inputParameter}`
    */
-  if (!userInput) throw `Please provide ${inputParameter}!`;
-  if (typeof userInput !== "string" || typeof userInput === "undefined")
-    throw `${inputParameter} must be a string!`;
-  if (userInput.trim().length === 0)
-    throw (
-      inputParameter + " cannot be an empty string or string with just spaces!"
-    );
+  
+  if (!userInput) throw new Error(`Please provide ${inputParameter}!`);
+
+if (typeof userInput !== "string" || typeof userInput === "undefined") {
+    throw new Error(`${inputParameter} must be a string!`);
+}
+
+if (userInput.trim().length === 0) {
+    throw new Error(`${inputParameter} cannot be an empty string or string with just spaces!`);
+}
 };
 
 const validObjectId = function error_handling_for_id(inputId, inputParameter) {
@@ -29,14 +32,17 @@ const validObjectId = function error_handling_for_id(inputId, inputParameter) {
    * @throws {MissingInput} `Please provide ${inputParameter}`
    * @throws {InvalidObjectID} `Invalid object " + inputParameter`
    */
-  if (!inputId) throw "You must provide an " + inputParameter;
-  if (typeof inputId !== "string" || typeof inputId === "undefined")
-    throw inputParameter + " must be a string!";
-  if (inputId.trim().length === 0)
-    throw inputParameter + " cannot be an empty string or just spaces!";
-
-  if (!ObjectId.isValid(inputId.trim()))
-    throw `Invalid object ${inputParameter}!`;
+  
+  if (!inputId) throw new Error(`You must provide an ${inputParameter}`);
+if (typeof inputId !== "string" || typeof inputId === "undefined") {
+    throw new Error(`${inputParameter} must be a string!`);
+}
+if (inputId.trim().length === 0) {
+    throw new Error(`${inputParameter} cannot be an empty string or just spaces!`);
+}
+if (!ObjectId.isValid(inputId.trim())) {
+    throw new Error(`Invalid object ${inputParameter}!`);
+}
 };
 const validName = function error_handling_for_name(inputName, inputParameter) {
   /**
@@ -47,7 +53,7 @@ const validName = function error_handling_for_name(inputName, inputParameter) {
    */
   if (!inputName) throw new Error(`Please provide ${inputParameter}!`);
   if (typeof inputName !== "string" || typeof inputName === "undefined")
-    throw inputParameter + " must be a string!";
+    throw new Error(inputParameter + " must be a string!");
   if (inputName.trim().length === 0)
     throw new Error(inputParameter + " cannot be an empty string or string with just spaces!");
 
@@ -55,7 +61,8 @@ const validName = function error_handling_for_name(inputName, inputParameter) {
   if (name.length > 1) {
     throw new Error(inputParameter + " should be in valid format!");
   } else {
-    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
+    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>?~]/;
+
     if (inputName.length < 3 || format.test(inputName)) {
       throw new Error(inputParameter + " must be atleast 3 characters long and should not contain special characters or numbers!");
     }
@@ -91,7 +98,7 @@ const validLogin = function error_handling_for_login(
     throw new Error("Please enter valid username .i.e without special characters or spaces!");
   if (inputPassword.length < 6)
     throw new Error("Password should be at least 6 characters long!");
-  if (spaces.test(inputPassword)) throw "Password cannot contain spaces!";
+  if (spaces.test(inputPassword)) throw new Error("Password cannot contain spaces!");
   if (!password_format.test(inputPassword))
     throw new Error("Password should contain at least one uppercase character, at least one number and at least one special character!");
 };
@@ -103,7 +110,7 @@ const validEmail = function error_handling_for_email(inputEmail) {
   
   let emailFormat = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g;
   inputEmail = inputEmail.trim();
-  if (!inputEmail) throw "You must provide Email Address!";
+  if (!inputEmail) throw new Error("You must provide Email Address!");
   if (typeof inputEmail !== "string" || typeof inputEmail === "undefined")
     throw new Error("Email Address must be a string!");
   if (!emailFormat.test(inputEmail))
@@ -128,7 +135,9 @@ const validPassword = (password) => {
    * for example:  Not valid: test123, test123$, foobar, tS12$ Valid: Test123$, FooBar123*, HorsePull748*% */
   if (!password || typeof password != "string" || password.trim().length === 0)
     throw new Error(`Missing Password`);
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[a-zA-Z\d$@$!%*?&_]{8,}$/;
+  
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[a-zA-Z\d$@$!%*?&_]{8,}$/;
+
 
   if (!passwordRegex.test(password)) throw new Error(`Invalid Password: The password must contain atleast 1 uppercase character, 1 lowercase character, 1 number, 1 special character and be atleast 8 characters long`);
   return true;
@@ -143,7 +152,7 @@ const validDate = (dateString) => {
 };
 
 const validDOB = (dateString) => {
-  var dobDate = moment().diff(dateString, 'years');
+  let dobDate = moment().diff(dateString, 'years');
   if (dobDate < 13) throw  new Error(`You must be atleast 13 years of age!`);
 };
 
