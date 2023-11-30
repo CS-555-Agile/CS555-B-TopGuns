@@ -55,8 +55,12 @@ const getUserByUsername = async (username) => {
     if (!user || user === null) return false;
     return user;
   } catch (err) {
+    // Log the error or perform some error-handling action
+    console.error('An error occurred while fetching user:', err);
+
+    // Rethrow the error to maintain the exception propagation
     throw err;
-  }
+}
 };
 
 const getUserByEmail = async (email) => {
@@ -78,6 +82,7 @@ const getUserByEmail = async (email) => {
     user._id = user._id.toString();
     return user;
   } catch (err) {
+    console.error('An error occurred while fetching user:', err);
     throw err;
   }
 };
@@ -105,6 +110,7 @@ const checkUser = async (email, password) => {
       return existingUser;
     } else throw badRequestError("Either the email or password is invalid");
   } catch (err) {
+    console.error('An error occurred while fetching user:', err);
     throw err;
   }
 };
@@ -152,6 +158,7 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
   
     return {insertedUser: true};
   } catch (err) {
+    console.error('An error occurred while fetching info:', err);
     throw err;
   }
 };
@@ -225,6 +232,7 @@ const searchUsers = async (searchText) => {
 
     return matchedUsers;
   } catch (err) {
+    console.error('An error occurred while fetching info:', err);
     throw (err);
   }
 };

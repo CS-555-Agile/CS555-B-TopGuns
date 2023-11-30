@@ -3,7 +3,6 @@ const moment = require("moment");
 /**
  * @author Kajol Rajesh Shah <kajol.shsh@gmail.com>
  * */
-// TODO: Use template strings instead of string concatenation e.g. line 16 & line 18
 
 const validString = function error_handling_for_string(
   userInput,
@@ -77,8 +76,8 @@ const validLogin = function error_handling_for_login(
    * @throws {passwordFormat} `Password should contain at least one uppercase character, at least one number and at least one special character`
    */
   let format = /[` !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  let spaces = /(.*\s{1,}.*)|(^\s+.*)|(.*\s+$)/g;
-  let password_format = /^(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/g;
+  let spaces = /(.+\s+.*)|(^\s+.*)|(.*\s+$)/g;
+  let password_format = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/g;
   inputUsername = inputUsername.trim();
   if (!inputUsername || !inputPassword)
     throw new Error("You must provide username and password!");
