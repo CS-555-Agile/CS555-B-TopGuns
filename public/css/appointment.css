@@ -1,4 +1,8 @@
 body {
+    color: #000000;
+    font-family: Sans-Serif;
+    padding: 30px;
+    background-color: #f6f6f6;
     margin-top: 25vh;
     min-height: 60vh;
     min-width: 60vh;
@@ -394,12 +398,6 @@ thead th.active,tbody td.active {
     overflow:hidden;
   }
   
-  body {
-    color: #000000;
-    font-family: Sans-Serif;
-    padding: 30px;
-    background-color: #f6f6f6;
-  }
   
   a {
     text-decoration: none;
@@ -455,9 +453,7 @@ thead th.active,tbody td.active {
   }
   
   
-  .dd-input {
-    display: none;
-  }
+  
   .dd-menu {
 
     z-index: 5;

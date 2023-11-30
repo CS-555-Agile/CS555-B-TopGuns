@@ -474,6 +474,9 @@ button[class ^= navbar]:hover{
     margin-bottom: 0;
 }
 .doc-panel-item .img{
+    max-width: 357px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     height: 440px;
     background-color: var(--light-gray);
@@ -496,11 +499,7 @@ button[class ^= navbar]:hover{
     -o-transition: var(--transition);
     transition: var(--transition);
 }
-.doc-panel-item .img{
-    max-width: 357px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .doc-panel-item:hover .info{
     bottom: 0;
 }

@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 
-body{
-
-    border-radius: 100px;
-}
-
 *{
     font-family: 'Poppins', sans-serif;
     margin:0; padding: 0;
@@ -328,11 +323,7 @@ thead th.active,tbody td.active {
        margin-bottom: 5px;
     
 }
-  .button:before{
-    transition: all 0.1s linear;  
-    content: attr(value);
-    display:block; 
-  }
+
   .button:after {
       transition: all 0.3s ease-in-out;  
       content: "";
@@ -497,37 +488,11 @@ section:nth-child(even){
     padding:1rem 4rem;
 }
 
-
-
-  
-  a {
-    text-decoration: none;
-    color: #000000;
-  }
-  
-  a:hover {
-    color: #222222
-  }
   
   .button:before{
     transition: all 0.1s linear;  
     content: attr(value);
     display:block; 
-  }
-  .button:after {
-      transition: all 0.3s ease-in-out;  
-      content: "";
-      display: block;
-      background-color:rgb(101, 249, 116);
-      margin-top:0px;
-      height: 40px;
-  }
-  
-  .button:hover:after{
-      margin-top:-40px;
-  }
-  .button:hover{
-      color:#000000;
   }
 
   .button2{
@@ -568,48 +533,15 @@ section:nth-child(even){
   .button2:hover{
       color:#ffffff;
   }
-
-  .button{
-    font-weight: bold;
-
-    transition: all 0.3s ease-in-out;
-    display:inline-block;
-    width:100px;
-    height:40px;
-    line-height:40px;
-    border:2px solid white;
-    text-transform: capitalize;
-    border-radius:15px;
-    margin:5px;
-    position:relative;
-    overflow:hidden;
-  }
-
-  
- 
- 
-  .button1{
-    background-color: #ff747485;
-    color: white;
-    transition: all 0.3s ease-in-out;
-    display:inline-block;
-    width:1430px;
-    height:60px;
-    margin-left: 10px;
-    padding-top: 10px;
-    padding: 10px 10px;
-    text-transform: capitalize;
-    border-radius:12px;
-    top: 100px;
-    overflow:hidden;
-  }
   
   body {
+    border-radius: 100px;
     color: #000000;
     font-family: Sans-Serif;
     padding: 30px;
     background-color: #f6f6f6;
   }
+  
   
   a {
     text-decoration: none;
@@ -762,9 +694,7 @@ section:nth-child(even){
   }
   
   
-  .dd-input {
-    display: none;
-  }
+
   .dd-menu1 {
     text-align: center;
   

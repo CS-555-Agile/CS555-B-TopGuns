@@ -61,7 +61,8 @@ const validName = function error_handling_for_name(inputName, inputParameter) {
   if (name.length > 1) {
     throw new Error(inputParameter + " should be in valid format!");
   } else {
-    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>?~]/;
+    let format = /[`0123456789!@#$%^&*()_+\-=[\]{};:"\\|,.<>?~]/;
+
 
     if (inputName.length < 3 || format.test(inputName)) {
       throw new Error(inputParameter + " must be atleast 3 characters long and should not contain special characters or numbers!");
@@ -82,7 +83,8 @@ const validLogin = function error_handling_for_login(
    * @throws {passwordSpaces} `Password cannot contain spaces`
    * @throws {passwordFormat} `Password should contain at least one uppercase character, at least one number and at least one special character`
    */
-  let format = /[` !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+  let format = /[` !@#$%^&*()_+\-=[\]{};':"\\|,.<>?~]/;
+
   let spaces = /(.+\s+.*)|(^\s+.*)|(.*\s+$)/g;
   let password_format = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/g;
   inputUsername = inputUsername.trim();
@@ -135,10 +137,7 @@ const validPassword = (password) => {
    * for example:  Not valid: test123, test123$, foobar, tS12$ Valid: Test123$, FooBar123*, HorsePull748*% */
   if (!password || typeof password != "string" || password.trim().length === 0)
     throw new Error(`Missing Password`);
-  
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[a-zA-Z\d$@$!%*?&_]{8,}$/;
-
-
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[a-zA-Z\d$@!%*?&_]{8,}$/;
   if (!passwordRegex.test(password)) throw new Error(`Invalid Password: The password must contain atleast 1 uppercase character, 1 lowercase character, 1 number, 1 special character and be atleast 8 characters long`);
   return true;
 };
