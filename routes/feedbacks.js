@@ -105,7 +105,7 @@ router.route("/staff/:staffId").get(async (req, res) => {
 
   let staffId = req.params.staffId
   try {
-    feedbacksList = await getFeedbacksStaff(staffId);
+    let feedbacksList = await getFeedbacksStaff(staffId);
     res.json(feedbacksList);
   } catch (error) {
     console.log("ERROR: " + error);
