@@ -90,9 +90,9 @@ router.route("/").get(async (req, res) => {
 
 router.route("/patients/:patientId").get(async (req, res) => {
 
-  patientId = req.params.patientId
+  let patientId = req.params.patientId
   try {
-    feedbacksList = await getFeedbacksPatients(patientId);
+    let feedbacksList = await getFeedbacksPatients(patientId);
     res.json(feedbacksList);
   } catch (error) {
     console.log("ERROR: " + error);
@@ -103,7 +103,7 @@ router.route("/patients/:patientId").get(async (req, res) => {
 
 router.route("/staff/:staffId").get(async (req, res) => {
 
-  staffId = req.params.staffId
+  let staffId = req.params.staffId
   try {
     feedbacksList = await getFeedbacksStaff(staffId);
     res.json(feedbacksList);

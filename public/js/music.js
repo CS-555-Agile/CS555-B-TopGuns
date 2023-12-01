@@ -6,11 +6,11 @@ function redirectToAnotherPage() {
 $(document).ready(function () {
     'use strict';
 
-    var supportsAudio = !!document.createElement('audio').canPlayType;
+    let supportsAudio = !!document.createElement('audio').canPlayType;
 
     if (supportsAudio) {
         // Initialize Plyr
-        var player = new Plyr('#audio1', {
+        let player = new Plyr('#audio1', {
             controls: [
                 'restart',
                 'play',
@@ -24,17 +24,20 @@ $(document).ready(function () {
         });
 
         // Initialize playlist and controls
-        var index = 0,
+         
+        
+        
+        let index = 0,
             playing = false,
             mediaPath = 'https://archive.org/download/mythium/',
-            extension = '',
+            extension1 = '',
             tracks = [
                 // Your track data here
             ];
 
         // Build playlist
         $.each(tracks, function (key, value) {
-            var trackNumber = value.track,
+            let trackNumber = value.track,
                 trackName = value.name,
                 trackDuration = value.duration;
 
@@ -53,7 +56,7 @@ $(document).ready(function () {
         `);
         });
 
-        var trackCount = tracks.length,
+        let trackCount = tracks.length,
             npAction = $('#npAction'),
             npTitle = $('#npTitle'),
             audio = $('#audio1').on('play', function () {
@@ -105,13 +108,13 @@ $(document).ready(function () {
         });
 
         $('#plList li').on('click', function () {
-            var id = parseInt($(this).index());
+            let id = parseInt($(this).index());
             if (id !== index) {
                 playTrack(id);
             }
         });
 
-        var loadTrack = function (id) {
+        let loadTrack = function (id) {
             $('.plSel').removeClass('plSel');
             $('#plList li:eq(' + id + ')').addClass('plSel');
             npTitle.text(tracks[id].name);
@@ -120,13 +123,13 @@ $(document).ready(function () {
             updateDownload(id, audio.src);
         };
 
-        var updateDownload = function (id, source) {
+        let updateDownload = function (id, source) {
             player.on('loadedmetadata', function () {
                 $('a[data-plyr="download"]').attr('href', source);
             });
         };
 
-        var playTrack = function (id) {
+        let playTrack = function (id) {
             loadTrack(id);
             audio.play();
         };
@@ -143,7 +146,7 @@ if (audio.canPlayType('audio/mpeg')) {
     } else {
         // No audio support
         $('.column').addClass('hidden');
-        var noSupport = $('#audio1').text();
+        let  noSupport = $('#audio1').text();
         $('.container').append('<p class="no-support">' + noSupport + '</p>');
     }
 });
