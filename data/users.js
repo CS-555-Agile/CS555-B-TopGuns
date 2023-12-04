@@ -237,6 +237,31 @@ const searchUsers = async (searchText) => {
   }
 };
 
+const searchUsersUpdated = async (searchText) => {
+  try {
+    if (!searchText || typeof searchText != 'string' || searchText.length === 0) throw new Error(`Null Search`);
+  } catch (err) {
+    console.log(err);
+    throw badRequestError(err);
+  }
+
+  try {
+    const splitSearch = searchText.split(" ");
+    const userCollection = await users();
+    const matchedUsers = await userCollection.find({$or: [
+      {userName: {$in: splitSearch}},
+      {firstName: {$in: splitSearch}},
+      {lastName: {$in: splitSearch}}
+    ]}).toArray();
+    if (!matchedUsers) throw Object.assign(new Error("No users found"), { code: 400 });
+
+    return matchedUsers;
+  } catch (err) {
+    console.log(err);
+    throw (err);
+  }
+};
+
 
 module.exports = {
   checkUser,
