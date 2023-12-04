@@ -64,10 +64,3 @@ Step 3 - open terminal to the correct path and type "npm start"
 To Run the test cases
 
 Step  - open terminal to the correct path and type "npm test"
-<!-- ## 🐛 Bugs/Issues
-
-- TODO
-
-## 💡 Testing
-
-- TODO -->
