@@ -19,7 +19,7 @@ $(document).ready(function() {
       $("#error-div").text("Missing Firstname");
       signupBool = false;
     }
-    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>?~]/;
+    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
     if (firstname.length < 3 || format.test(firstname)) {
       $("#error-div").text("Firstname must be atleast 3 characters long and should not contain special characters or numbers");
       signupBool = false;
@@ -39,21 +39,18 @@ $(document).ready(function() {
     // Username validation
     let username = $("#usernameInput").val();
     const usernameRegex = /^[a-z0-9]{4,}$/i;
-
-    if (!username || typeof username !== "string" || username.trim().length === 0) {
+    if (!username || typeof username != "string" || username.trim().length === 0) {
       $("#error-div").text("Missing Username");
       signupBool = false;
-    }
-    
-    if (!usernameRegex.test(username)) {
-      $("#error-div").text("Invalid Username: The username must be only alphanumeric and have at least 4 characters");
+    } else if (!usernameRegex.test(username)) {
+      $("#error-div").text("Invalid Username: The username must be only alphanumeric and have atleast 4 characters");
       signupBool = false;
-    }
-    
+    };
 
     // Email validation
     let email = $("#emailInput").val();
-    const emailFormat = /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*@[a-zA-Z0-9\-]+(\.[a-zA-Z]{2,4}|\.\d{1,3}\.\d{1,3}\.\d{1,3})$/;
+    const emailFormat =
+    /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/g;
     if (!email || typeof email != "string" || email.trim().length === 0) {
       $("#error-div").text("Missing Email");
       signupBool = false;
@@ -108,14 +105,17 @@ $(document).ready(function() {
         }),
       };
       $.ajax(requestConfig).then(function (responseMessage) {
-        if (responseMessage) {
+        if (responseMessage != false) {
+          // $("[name=" + id + "]")
+          //   .parent()
+          //   .remove();
           console.log(responseMessage);
         } else {
           // no accepted
+          console.log(responseMessage);
           errorDiv.text(responseMessage);
           errorDiv.show();
-          console.log(responseMessage);
-        }        
+        }
       });
     } else {
       // error
