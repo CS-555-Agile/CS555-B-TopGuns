@@ -1,7 +1,57 @@
     
-
-    <!-- header -->
+<!-- header -->
     <header class = "header bg-blue">
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <a href = "index.html" class = "navbar-brand">
+                    <img src = "../../public/images/logo.png" alt = "site logo">
+                </a>
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "../../public/images/ham-menu-icon.png">
+                </button>
+
+                <div class = "navbar-collapse bg-white">
+                    <button type = "button" class = "navbar-hide-btn">
+                        <img src = "../../public/images/close-icon.png">
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "/home" class = "nav-link">Home</a>
+                        </li>
+                        {{#if patient}}
+                        <li class = "nav-item">
+                            <a href = "/service" class = "nav-link">Service</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/feedbacks" class = "nav-link">Feedback</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/blog" class = "nav-link" >Blog</a>
+                        </li>
+                      {{/if}}
+                      {{#if doctor}}
+                      <li class = "nav-item">
+                            <a href = "/feedbacks/show" class = "nav-link">Feedback</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/appointment/show" class = "nav-link">Appointment</a>
+                        </li>
+                        {{/if}}
+                        <li class = "nav-item">
+                            <a href = "/logout" class = "nav-link" >Logout</a>
+                        </li>
+                        
+                        
+                      
+                      
+                       
+                    </ul>
+                    
+                </div> 
+            </div>
+        </nav>
+    <!-- header -->
+    {{!-- <header class = "header bg-blue">
         <nav class = "navbar bg-blue">
             <div class = "container flex">
                 <a href = "index.html" class = "navbar-brand">
@@ -22,7 +72,7 @@
                         
                         {{#if patient}}
                         <li class = "nav-item">
-                            <a href = "#" class = "nav-link">Entertainment</a>
+                            <a href = "/entertainment" class = "nav-link">Entertainment</a>
                         </li>
                         <li class = "nav-item">
                             <a href = "/appointment" class = "nav-link">Book Appointment</a>
@@ -30,9 +80,19 @@
                         <li class = "nav-item">
                             <a href = "/feedbacks" class = "nav-link">Feedback</a>
                         </li>
+                        <li class = "nav-item">
+                            <a href = "/blog" class = "nav-link">Blog</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/dm" class = "nav-link">Chat</a>
+                        </li>
                         {{/if}}
                         
-                       
+                       {{#if doctor}}
+                        <li class = "nav-item">
+                            <a href = "/appointment/show" class = "nav-link">Appointment</a>
+                        </li>
+                        {{/if}}
                         <li class = "nav-item">
                             <a href = "/logout" class = "nav-link" >Logout</a>
                         </li>
@@ -44,9 +104,9 @@
                     
                 </div> 
             </div>
-        </nav>
+        </nav> --}}
 
-        <div class = "header-inner text-white text-center">
+       <div class = "header-inner text-white text-center">
             <div class = "container grid">
                 <div class = "header-inner-left">
                     <h1>your most trusted<br> <span>health partner</span></h1>
@@ -185,17 +245,7 @@
                    
                 </div>
 
-                <div class = "footer-item">
-                    <h3 class = "footer-head">tags</h3>
-                    <ul class = "tags-list flex">
-                        <li>medical care</li>
-                        <li>emergency</li>
-                        <li>therapy</li>
-                        <li>surgery</li>
-                        <li>medication</li>
-                        <li>nurse</li>
-                    </ul>
-                </div>
+                
 
                 <div class = "footer-item">
                     <h3 class = "footer-head">Quick Links</h3>

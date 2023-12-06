@@ -5,16 +5,24 @@ const saltRounds= 11
 const { badRequestError, internalServerError, notFoundError } = require("../helpers/wrappers");
 const { validEmail, validName, validUsername, validPassword, validDate, validDOB, validString, validObjectId } = require("../helpers/validations");
 
+// const getAllUsers = async () => {
+//   const userCollection = await users();
+//   const userList = await userCollection.find({}).toArray();
+//   if (!userList)
+//     throw { message: "Could not get all the users!", code: 404 };
+//   return userList;
+// };
+
 const getUserById = async (userId) => {
   validObjectId(userId, "ID");
   userId = userId.trim();
   const userCollection = await users();
   const userObject = await userCollection.findOne({ _id: ObjectId(userId) });
-    if (userObject === null) {
-      const error = new Error("No user with this ID can be found!");
-      error.code = 404;
-      throw error;
-    }
+  if (userObject === null)
+    throw {
+      message: "No user with this ID can be found!",
+      code: 404,
+    };
   return userObject;
 };
 
@@ -28,13 +36,12 @@ const deleteUserById = async (userId) => {
   userId = userId.trim();
   const userCollection = await users();
   const deletionInfo = userCollection.deleteOne({ _id: ObjectId(userId) });
-  if (deletionInfo.deletedCount === 0) {
-    const error = new Error(`Could not delete user with the user id ${userId}`);
-    error.code = 404;
-    throw error;
-  }
+  if (deletionInfo.deletedCount === 0)
+    throw {
+      message: `Could not delete user with the user id ${userId}`,
+      code: 404,
+    };
   return { userId: userId, deleted: true };
-  
 };
 
 const getUserByUsername = async (username) => {
@@ -55,18 +62,14 @@ const getUserByUsername = async (username) => {
     if (!user || user === null) return false;
     return user;
   } catch (err) {
-    // Log the error or perform some error-handling action
-    console.error('An error occurred while fetching user:', err);
-
-    // Rethrow the error to maintain the exception propagation
     throw err;
-}
+  }
 };
 
 const getUserByEmail = async (email) => {
   // Validations
   try {
-    validEmail(email);
+    const emailTest = validEmail(email);
   } catch (err) {
     throw badRequestError(err);
   }
@@ -82,7 +85,6 @@ const getUserByEmail = async (email) => {
     user._id = user._id.toString();
     return user;
   } catch (err) {
-    console.error('An error occurred while fetching user:', err);
     throw err;
   }
 };
@@ -110,7 +112,6 @@ const checkUser = async (email, password) => {
       return existingUser;
     } else throw badRequestError("Either the email or password is invalid");
   } catch (err) {
-    console.error('An error occurred while fetching user:', err);
     throw err;
   }
 };
@@ -118,14 +119,19 @@ const checkUser = async (email, password) => {
 const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInput) => {
   // Validations
   try {
-    if (!firstnameInput || !lastnameInput || !emailInput || !passwordInput) throw new Error(`All fields must be supplied!`);
+    if (!firstnameInput || !lastnameInput || !emailInput || !passwordInput) throw `All fields must be supplied!`;
     validName(firstnameInput);
     validName(lastnameInput);
+    // validDate(DOBInput);
+    // validDOB(DOBInput);
     validEmail(emailInput);
+    // validUsername(usernameInput);
     validPassword(passwordInput);
 
+    // const takenUser = await getUserByUsername(usernameInput);
+    // if (takenUser) throw `Username already taken!`;
     const takenEmail = await getUserByEmail(emailInput);
-    if (takenEmail) throw new Error(`Email already registered to another account!`);
+    if (takenEmail) throw `Email already registered to another account!`;
   } catch (err) {
     throw badRequestError(err);
   }
@@ -133,7 +139,9 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
   // Trim inputs
   firstnameInput = firstnameInput.trim();
   lastnameInput = lastnameInput.trim();
+  // DOBInput = DOBInput.trim();
   emailInput = emailInput.trim().toLowerCase();
+  // usernameInput = usernameInput.trim().toLowerCase();
 
   // Mongo Collection operations and password hashing
   try {
@@ -147,8 +155,8 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
       email: emailInput,
       // dateOfBirth: DOBInput,
       profilePicture: null,
-      category:"Patient",
-      subcategory:"Patient"
+      category:"patient",
+      subcategory:"patient"
 
     };
 
@@ -158,7 +166,6 @@ const createUser = async (firstnameInput, lastnameInput, emailInput, passwordInp
   
     return {insertedUser: true};
   } catch (err) {
-    console.error('An error occurred while fetching info:', err);
     throw err;
   }
 };
@@ -178,7 +185,7 @@ const updateUserById = async (
     !email ||
     !dateOfBirth
   )
-  throw Object.assign(new Error("All fields must be supplied!"), { code: 400 });
+    throw { message: "All fields must be supplied!", code: 400 };
 
   validObjectId(userId);
   validString(userName);
@@ -188,7 +195,7 @@ const updateUserById = async (
   validString(dateOfBirth);
 
   const userExists = await getUserById(userId);
-  if (!userExists) throw Object.assign(new Error("User doesn't exist!"), { code: 400 });
+  if (!userExists) throw { message: "User doesn't exist!", code: 400 };
   const userCollection = await users();
   const updatedUser = {
     userName: userName.trim(),
@@ -202,11 +209,10 @@ const updateUserById = async (
     { $set: updatedUser }
   );
   if (updatedInfo.modifiedCount === 0)
-    {
-    const error = new Error(`Could not update user with user ID ${userId}!`);
-    error.code = 404;
-    throw error;
-    }
+    throw {
+      message: `Could not update user with user ID ${userId}!`,
+      code: 404,
+    };
   else {
     const newUser = await getUserById(userId);
     return newUser;
@@ -215,7 +221,7 @@ const updateUserById = async (
 
 const searchUsers = async (searchText) => {
   try {
-    if (!searchText || typeof searchText != 'string' || searchText.trim().length === 0) throw new Error(`Empty search text`);
+    if (!searchText || typeof searchText != 'string' || searchText.trim().length === 0) throw `Empty search text`;
   } catch (err) {
     throw badRequestError(err);
   }
@@ -228,36 +234,9 @@ const searchUsers = async (searchText) => {
       {firstName: {$in: splitSearch}},
       {lastName: {$in: splitSearch}}
     ]}).toArray();
-    if (!matchedUsers) throw Object.assign(new Error("No users found"), { code: 400 });
-
+    if (!matchedUsers) throw {message: "No users found", status: 404};
     return matchedUsers;
   } catch (err) {
-    console.error('An error occurred while fetching info:', err);
-    throw (err);
-  }
-};
-
-const searchUsersUpdated = async (searchText) => {
-  try {
-    if (!searchText || typeof searchText != 'string' || searchText.length === 0) throw new Error(`Null Search`);
-  } catch (err) {
-    console.log(err);
-    throw badRequestError(err);
-  }
-
-  try {
-    const splitSearch = searchText.split(" ");
-    const userCollection = await users();
-    const matchedUsers = await userCollection.find({$or: [
-      {userName: {$in: splitSearch}},
-      {firstName: {$in: splitSearch}},
-      {lastName: {$in: splitSearch}}
-    ]}).toArray();
-    if (!matchedUsers) throw Object.assign(new Error("No users found"), { code: 400 });
-
-    return matchedUsers;
-  } catch (err) {
-    console.log(err);
     throw (err);
   }
 };
