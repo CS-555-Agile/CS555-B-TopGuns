@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.route("/").get(async (req, res) => {
     try {
-        if (!req.session.user?.verified || req.session.user.category!="patient") {
+        if (!req.session.user.verified || req.session.user.category!="patient") {
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
@@ -27,7 +27,7 @@ router.route("/").get(async (req, res) => {
       } 
       catch (err) {
         return res
-          .status(err?.status ?? 500)
+          .status(err&&err.status?err.status:500)
           .render("auth/signup", {
             title: "Login",
             partial: "signup-script",
@@ -41,7 +41,7 @@ router.route("/").get(async (req, res) => {
 
 router.route("/display").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -64,7 +64,7 @@ router.route("/display").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -76,7 +76,7 @@ router.route("/display").get(async (req, res) => {
 });
 router.route("/Decoding_Health").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -99,7 +99,7 @@ router.route("/Decoding_Health").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -111,7 +111,7 @@ router.route("/Decoding_Health").get(async (req, res) => {
 });
 router.route("/migraine").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -134,7 +134,7 @@ router.route("/migraine").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -146,7 +146,7 @@ router.route("/migraine").get(async (req, res) => {
 });
 router.route("/selfttoughtblog").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -169,7 +169,7 @@ router.route("/selfttoughtblog").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -181,7 +181,7 @@ router.route("/selfttoughtblog").get(async (req, res) => {
 });
 router.route("/winterblog").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -204,7 +204,7 @@ router.route("/winterblog").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -216,7 +216,7 @@ router.route("/winterblog").get(async (req, res) => {
 });
 router.route("/linessblog").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -239,7 +239,7 @@ router.route("/linessblog").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
