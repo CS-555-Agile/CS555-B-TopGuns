@@ -74,7 +74,7 @@ app.use(async (req, res, next) => {
 app.use('*', async(req, res, next) => {
   const reqPath = req.originalUrl;
   if (reqPath == '/login' || reqPath == '/signup' ) {
-    if(req && req.session && req.session.user.verified) {
+    if(req && req.session && req.session.user && req.session.user.verified) {
       return res.redirect("/home");
     }
   } else if (!req.session.user || !req.session.user.verified) {
