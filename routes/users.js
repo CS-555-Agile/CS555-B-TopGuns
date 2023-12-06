@@ -86,8 +86,10 @@ router.route("/:userId").put(async (req, res) => {
   
   try {
     if (!user.userName || !user.email) {
-      throw { message: "All fields must be supplied!", code: 400 };
+      throw new Error("All fields must be supplied!");
     }
+    
+
   } catch (error) {
     res.status(error.code).send(error.message);
   }

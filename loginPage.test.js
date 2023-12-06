@@ -10,7 +10,7 @@ describe('Route Tests after login', () => {
   //Test Case for GET Route performance Tests
   it('should respond within 500ms', async () => {
     const startTime = Date.now();
-    const response = await request(app).get('/logout');
+    await request(app).get('/logout');
     const endTime = Date.now();
     const responseTime = endTime - startTime;
 
@@ -38,7 +38,7 @@ describe('Route Tests after login', () => {
   it('should not consume more than 200MB of RAM', async () => {
     const memoryUsageBefore = os.freemem() / os.totalmem();
 
-    const startTime = Date.now();
+    Date.now();
     const loginResponse = await request(app)
       .post('/login')
       .send({ emailInput: 'testdev@gmail.com', passwordInput: '1911194@Sweet' });
@@ -48,11 +48,11 @@ describe('Route Tests after login', () => {
     const cookie = loginResponse.headers['set-cookie'][0];
 
     // Book an appointment
-    const bookAppointmentResponse = await request(app)
+    await request(app)
       .post('/appointment')
       .set('Cookie', cookie)
       .send({ category: 'consultant', consultant_id: '65414a648322d09b477736db',time_slot:'10:00',date:'11-08-2023',notes:'nothing' });
-    const endTime = Date.now();
+    Date.now();
 
     const memoryUsageAfter = os.freemem() / os.totalmem();
     const memoryConsumed = memoryUsageBefore - memoryUsageAfter;
@@ -123,7 +123,6 @@ describe('Route Tests after login', () => {
   let vars
   beforeEach(async function() {
     driver = await new Builder().forBrowser('chrome').build()
-    vars = {}
   })
   afterEach(async function() {
     await driver.quit();

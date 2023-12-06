@@ -19,7 +19,7 @@ $(document).ready(function() {
       $("#error-div").text("Missing Firstname");
       signupBool = false;
     }
-    let format = /[`0123456789!@#$%^&*()_+\-=\[\]{};:"\\|,.<>?~]/;
+    let format = /[`0123456789!@#$%^&*()_+\-=\][{};:"\\|,.<>?~]/;
     if (firstname.length < 3 || format.test(firstname)) {
       $("#error-div").text("Firstname must be atleast 3 characters long and should not contain special characters or numbers");
       signupBool = false;
@@ -53,7 +53,7 @@ $(document).ready(function() {
 
     // Email validation
     let email = $("#emailInput").val();
-    const emailFormat = /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*@[a-zA-Z0-9\-]+(\.[a-zA-Z]{2,4}|\.\d{1,3}\.\d{1,3}\.\d{1,3})$/;
+    const emailFormat = /^[a-zA-Z0-9_\-\]+(\.[a-zA-Z0-9_\-\]+)*@[a-zA-Z0-9\-]+(\.[a-zA-Z]{2,4}|\.\d{1,3}\.\d{1,3}\.\d{1,3})$/;
     if (!email || typeof email != "string" || email.trim().length === 0) {
       $("#error-div").text("Missing Email");
       signupBool = false;
@@ -64,7 +64,7 @@ $(document).ready(function() {
 
     // Password validation
     let password = $("#passwordInput").val().trim();
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&_])[A-Za-z\d$@!%*?&_]{8,}$/;
     if (!password || typeof password != "string" || password.trim().length === 0) {
       $("#error-div").text("Missing Password");
       signupBool = false;

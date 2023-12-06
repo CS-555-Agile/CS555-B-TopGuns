@@ -30,7 +30,6 @@ $(document).ready(function () {
         let index = 0,
             playing = false,
             mediaPath = 'https://archive.org/download/mythium/',
-            extension1 = '',
             tracks = [
                 // Your track data here
             ];
