@@ -52,7 +52,7 @@ router
   .get(async (req, res) => {
     //code here for GET
     try {
-      if (!req.session.user?.verified) {
+      if (!req.session.user.verified) {
         return res
           .status(200)
           .render("auth/signup", {
