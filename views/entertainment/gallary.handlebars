@@ -1,0 +1,133 @@
+
+<body class="profile-page">
+
+     
+
+  <script>
+    $(document).ready(function(){
+      $(".mobile-nav i").click(function(){
+          $(".menu").toggleClass('mobile-menu');
+      });
+    })
+  </script>
+</body>
+    
+<br> <br> <br> <br> <br> <br> <br> 
+<div class="main main-raised">
+		<div class="profile-content">
+            <div class="container">
+                <div class="row">
+	                <div class="col-md-6 ml-auto mr-auto">
+        	           <div class="profile">
+	                        <div class="avatar">
+	                            <img src="../../public/images/upload.png">
+	                        </div>
+	                        <div class="name">
+	                            <h3 class="title">{{user.firstName}} {{user.lastName}}</h3>
+							
+	                        </div>
+	                    </div>
+    	            </div>
+                </div>
+
+<head>
+<style>
+.button {
+  background-color: #3b84f9;
+  border: none;
+  border-radius: 35px;
+  color: white;
+  padding: 5px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+ 
+  cursor: pointer;
+}
+.button {
+  position: absolute;
+  top: 0%; /* Adjust the top position as needed */
+  left: 85%; /* Adjust the left position as needed */
+  transform: translate(-50%, -50%) scale(1.5); /* Adjust the scale factor and position */
+}
+
+.button span {
+  display: inline-block;
+  transform: scale(1.5); /* Adjust the scale factor to increase the size of the "+" symbol */
+}
+.button1 {
+  background-color: #3b84f9;
+  border: none;
+  border-radius: 35px;
+  color: white;
+  padding: 5px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+ 
+  cursor: pointer;
+}
+.button1 {
+  position: absolute;
+  top: 0%; /* Adjust the top position as needed */
+  left: 5%; /* Adjust the left position as needed */
+  transform: translate(-50%, -50%) scale(1.5); /* Adjust the scale factor and position */
+}
+
+.button1 span {
+  display: inline-block;
+  transform: scale(1.5); /* Adjust the scale factor to increase the size of the "+" symbol */
+}
+</style>
+</head>
+<body>
+
+
+  <a href="/service/upload" class="button"><span>+</span></a>
+  <a href="/service" class="button1"><span>></span></a>
+
+</body>
+</html>
+
+				<div class="row">
+					<div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                          <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                  <i class="material-icons">camera</i>
+                                  Personal
+                                </a>
+                            </li>
+                           
+                            </li>
+                          </ul>
+                        </div>
+    	    	</div>
+            </div>
+        
+          <div class="tab-content tab-space">
+            <div class="tab-pane active text-center gallery" id="studio">
+  				<div class="row">
+            {{#each posts}}
+  					<div class="col-md-3 ml-auto">
+  					    <img src="../..{{postContent}}" class="rounded">
+  					</div>
+  					{{/each}}
+                      
+  				</div>
+  			</div>
+          
+        
+            </div>
+        </div>
+	</div>
+	
+
+  
+  
+   
+
+</body>

@@ -1,0 +1,11 @@
+
+    {{!-- <div class="login" id="login">
+            <input id="login_name" placeholder="Username">
+            <input type="password" id="login_pass" placeholder="Password" value="admin">
+            <button onClick="login('{{user._id }}', '{{user.firstName}}', '{{user.category}}','{{user.subcategory}}')"> Connect to online users </button>
+    </div> --}}
+<body onload="login('{{user._id }}', '{{user.firstName}}', '{{user.category}}','{{user.subcategory}}')">
+<div id="after-login">
+        <h1 id="me"></h1>
+        <div id="user-list" class="user-list"></div>
+</div>

@@ -27,17 +27,19 @@ router.route("/").get(async (req, res) => {
       return res.render("home/homePage",{
         title: "Home",
         partial: "home-script",
-        css: "home-css",
+        css: "homedoc-css",
         doctor:true
       });
     } 
     else {
       let userId = String(req.session.user._id);
-     
+      console.log(userId)
      
       const past = await getPastAppointment(userId);
       const future = await getupComingAppointment(userId);
-    
+      console.log(past)
+      console.log(future)
+     
         
       return res
         .status(200)
@@ -62,9 +64,23 @@ router.route("/").get(async (req, res) => {
   }
 })
 .post(async (req, res) => {
+  console.log("patient_id")
+  
+  // console.log(patient_id)
+
+  // try {
+  //   const {
+  //     category,
+  //     consultant_id,
+  //     time_slot,
+  //     notes,
+  //   } = req.body; 
+  //   // TODO: Input Validation
  
-  
-  
+  // } catch (err) {
+   
+  //   return res.json(err)
+  // }
   try {
     let {
           category,
@@ -79,7 +95,7 @@ router.route("/").get(async (req, res) => {
     time_slot = xss(time_slot);
     notes = xss(notes);
     date = xss(date);
-  
+    // let patient_id = "3454566767ebavd"
     const newAppointment = await createAppointments(
       category,
       consultant_id,
@@ -89,9 +105,9 @@ router.route("/").get(async (req, res) => {
       notes
     );
     if (!newAppointment.bookedAppointment) {
-     
+      console.log(err, "Line 194");
       return res.status(err?.status ?? 500)
-    } else if {
+    } else {
       if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
             title: "Home",
@@ -104,14 +120,14 @@ router.route("/").get(async (req, res) => {
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
-            css: "home-css",
+            css: "homedoc-css",
             doctor:true
           });
         }
       
     }
   } catch (err) {
-    
+    console.log(err, "Line 206");
     return res.status(err?.status ?? 500)
     
   }
@@ -133,7 +149,7 @@ router.route("/getConsultant").get(async (req, res) => {
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
-            css: "home-css",
+            css: "homedoc-css",
             doctor:true
           });
         }
@@ -162,7 +178,7 @@ router.route("/getProfessioanl").get(async (req, res) => {
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
-            css: "home-css",
+            css: "homedoc-css",
             doctor:true
           });
         }
@@ -186,18 +202,20 @@ router.route("/show").get(async (req, res) => {
       return res.render("home/homePage",{
         title: "Home",
         partial: "home-script",
-        css: "home-css",
+        css: "homedoc-css",
         doctor:true
       });
     } 
     else {
       let userId = String(req.session.user._id);
-  
+      console.log(userId)
      
       const past = await getPast(userId);
       const future = await getupComing(userId);
       const pending = await getPendingAppointment(userId);
-
+      console.log(past)
+      console.log(future)
+      console.log(pending)
         
       return res
         .status(200)
@@ -228,11 +246,11 @@ router.put('/accept/:appId', async (req, res) => {
   try {
     const  appId = req.params.appId;
     const  status  = true;
-   
+    console.log(appId + " ---- " + status);
     const result = await updateAppointmentStatus(appId, status);
     res.status(result.code).json({ message: result.message });
   } catch (error) {
-
+    console.error('Error updating status:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
@@ -240,11 +258,11 @@ router.put('/decline/:appId', async (req, res) => {
   try {
     const  appId = req.params.appId;
     const  status  = false;
- 
+    console.log(appId + " ---- " + status);
     const result = await updateAppointmentStatus(appId, status);
     res.status(result.code).json({ message: result.message });
   } catch (error) {
-
+    console.error('Error updating status:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
