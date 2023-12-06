@@ -23,7 +23,7 @@ function getCurrentTimestamp() {
 router.route("/").get(async (req, res) => {
   //code here for GET
   try {
-    if (!req.session.user?.verified || req.session.user.category!="patient") {
+    if (!req.session.user.verified || req.session.user.category!="patient") {
       return res.redirect("/home");
     } else {
         // const past = await getPastAppointment(String(req.session.user._id));
@@ -44,7 +44,7 @@ router.route("/").get(async (req, res) => {
     }
   } catch (err) {
     return res
-      .status(err?.status ?? 500)
+      .status(err&&err.status?err.status:500)
       .render("auth/signup", {
         title: "Login",
         partial: "signup-script",
@@ -82,14 +82,14 @@ router.route("/").get(async (req, res) => {
     const newFeedback = await createFeedback(FeedbackObject);
     if (!newFeedback.insertedFeedback) {
       console.log("Failed to post a feedback.");
-      return res.status(err?.status ?? 500)
+      return res.status(err&&err.status?err.status:500)
     } else {
       // return res.json("Feedback posted successfully. ");
       return res.redirect("/home");
     }
   } catch (err) {
     console.log("Erorr while creating a feedback: " + err);
-    return res.status(err?.status ?? 500)
+    return res.status(err&&err.status?err.status:500)
   }
 
 
@@ -99,7 +99,7 @@ router.route("/").get(async (req, res) => {
 router.route("/show").get(async (req, res) => {
   //code here for GET
   try {
-    if (!req.session.user?.verified || req.session.user.category==="patient") {
+    if (!req.session.user.verified || req.session.user.category==="patient") {
       return res.render("home/homePage",{
         title: "Home",
         partial: "home-script",
@@ -130,7 +130,7 @@ router.route("/show").get(async (req, res) => {
   } catch (err) {
     console.log(err)
     return res
-      .status(err?.status ?? 500)
+      .status(err&&err.status?err.status:500)
       .render("auth/signup", {
         title: "Login",
         partial: "signup-script",
