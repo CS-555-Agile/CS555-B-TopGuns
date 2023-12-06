@@ -1,7 +1,7 @@
 const { dbConnection } = require("./mongoConnection");
 
 const getCollectionFn = (collection) => {
-  let _col;
+  let _col = undefined;
 
   return async () => {
     if (!_col) {
@@ -16,5 +16,6 @@ const getCollectionFn = (collection) => {
 module.exports = {
   users: getCollectionFn("users"),
   appointments: getCollectionFn("appointments"),
-  feedbacks: getCollectionFn("feedbacks")
+  feedbacks: getCollectionFn("feedbacks"),
+  post: getCollectionFn("post"),
 };
