@@ -1,0 +1,88 @@
+        <nav class = "navbar bg-blue">
+            <div class = "container flex">
+                <a href = "index.html" class = "navbar-brand">
+                    <img src = "../../public/images/logo.png" alt = "site logo">
+                </a>
+                <button type = "button" class = "navbar-show-btn">
+                    <img src = "../../public/images/ham-menu-icon.png">
+                </button>
+    
+            
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "/home" class = "nav-link">Home</a>
+                        </li>
+                         <li class = "nav-item">
+                            <a href = "/feedbacks/show" class = "nav-link">Feedback</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/appointment/show" class = "nav-link">Appointment</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "/logout" class = "nav-link" >Logout</a>
+                        </li>
+                      
+                       
+                    </ul>
+                    
+                </div> 
+            </div>
+        </nav>
+    
+       
+            </div>
+        </div>
+    </header>
+    <body>
+      <!--Testimonials------------------->
+      <section id="testimonials">
+          <!--heading--->
+          <div class="testimonial-heading">
+              <span>Feedback</span>
+              <h1>   </h1>
+          </div>
+          <!--testimonials-box-container------>
+          <div class="testimonial-box-container">
+            {{#each rating}}
+               <div class="testimonial-box">
+                  <!--top------------------------->
+                  <div class="box-top">
+                      <!--profile----->
+                      <div class="profile">
+                          <!--img---->
+                        
+                          <!--name-and-username-->
+                          <div class="name-user">
+                              <strong>{{patientName}}</strong>
+                              <span>{{patientEmail}}</span>
+                          </div>
+                      </div>
+                      <!--reviews------>
+                      <div class="reviews">
+                        {{!-- {{ratings}} --}}
+                        {{#each [ratings]}}
+                            <i class="fas fa-star"></i>
+                        {{/each}}
+                          {{#each [empty]}}
+                            <i class="far fa-star"></i>
+                        {{/each}}
+                          {{!-- <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i><!--Empty star--> --}}
+                      </div>
+                  </div>
+                  <!--Comments---------------------------------------->
+                  <div class="client-comment">
+                      <p>{{body}}</p>
+                  </div>
+              </div>
+            {{/each}}
+              <!--BOX-1-------------->
+              
+   
+              
+              
+          </div>
+      </section>
