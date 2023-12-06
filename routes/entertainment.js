@@ -5,7 +5,7 @@ const postData = data.post;
 const {getPost } = require("../data/post");
 router.route("/").get(async (req, res) => {
     try {
-        if (!req.session.user?.verified || req.session.user.category!="patient") {
+        if (!req.session.user.verified || req.session.user.category!="patient") {
           return res.render("home/homePage",{
             title: "Home",
             partial: "home-script",
@@ -28,7 +28,7 @@ router.route("/").get(async (req, res) => {
       } 
       catch (err) {
         return res
-          .status(err?.status ?? 500)
+          .status(err&&err.status?err.status:500)
           .render("auth/signup", {
             title: "Login",
             partial: "signup-script",
@@ -42,7 +42,7 @@ router.route("/").get(async (req, res) => {
 
 router.route("/music").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -65,7 +65,7 @@ router.route("/music").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -79,7 +79,7 @@ router.route("/music").get(async (req, res) => {
 
 router.route("/gallary").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -108,7 +108,7 @@ router.route("/gallary").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -121,7 +121,7 @@ router.route("/gallary").get(async (req, res) => {
 
 router.route("/upload").get(async (req, res) => {
   try {
-      if (!req.session.user?.verified || req.session.user.category!="patient") {
+      if (!req.session.user.verified || req.session.user.category!="patient") {
         return res.render("home/homePage",{
           title: "Home",
           partial: "home-script",
@@ -144,7 +144,7 @@ router.route("/upload").get(async (req, res) => {
     } 
     catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err&&err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
