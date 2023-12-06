@@ -1,139 +1,148 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-:root {
-    --primary: #111;
-    --secondary: #376be5;
-   
-    --border: #aaa;
-}
-* 
-{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth ;
+
+.container1 {
+  max-width: 1280px;
+  margin: 3rem auto;
+  padding: 1rem;
 }
 
-
-
-
-
-
-
-
-swiper-slide 
-  {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-swiper-slide .imgbx img 
-  {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(50%)
-  }
-swiper-slide .text
-  {
-    position: absolute;
-    color: #fff;
-    top: 70%;
-  }
-section
-  {
-    padding: 40px 30px;
-  }
-.news
-{
-    text-align: center;
-}
-.news .titletext
-{
-    text-align: center;
-    font-size: 2em;
-    padding-bottom: 40px;
-}
-.news .titletext span
-{
-    color: var(--secondary);
+h1 {
+  text-align: center;
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-block: 2rem;
-    gap: 2rem;
-    background: var(--bg);
-    border-radius: 20px;
-    padding: 50px 0px;
-  }
-  
-  img {
-    max-width: 100%;
-    object-fit: cover;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: clamp(20rem, calc(20rem + 2vw), 22rem);
-    overflow: hidden;
-    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
-    border-radius: 1em;
-    background: #fff;
-  }
-  
-  .card__body {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-  }
-  
-  
-  .tag {
-    align-self: flex-start;
-    padding: .25em .75em;
-    border-radius: 1em;
-    font-size: .75rem;
-    background: var(--secondary);
-    color: #fff;
-  }
-  
-  .tag + .tag {
-    margin-left: .5em;
-  }
-  
-  .card__body h4 {
-    font-size: 1.5rem;
-    text-transform: capitalize;
-  }
-  
-  .card__footer {
-    display: flex;
-    padding: 1rem;
-    margin-top: auto;
-  }
-  
-  .user {
-    display: flex;
-    gap: .5rem;
-  }
-  
-  .user__image {
-    border-radius: 50%;
-  }
-  
-  .user__info > small {
-    color: #666;
-  }
+button {
+  font-size: 1.5rem;
+  padding: 0.35em 0.75em;
+  line-height: 1;
+  background-color: transparent;
 
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.1s;
+  outline: 0;
+}
+button:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+button .fa {
+  font-size: 0.75em;
+  margin-left: 0.5em;
+}
+
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 3.5rem;
+}
+@media (max-width: 1140px) {
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .posts {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.post__image {
+  width: 100%;
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+}
+.post__image:before, .post__image:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 120%;
+  height: 120%;
+}
+.post__image:before {
+  background-size: cover;
+  background-position: center center;
+  transform: scale(1);
+  filter: blur(0);
+  transition: 2s cubic-bezier(0, 0.6, 0.2, 1);
+}
+.post__image:after {
+  background: linear-gradient(30deg, #042A4F 0%, #E65891 100%);
+  background-size: auto auto;
+  background-position: bottom left;
+  opacity: 0.15;
+  transition: 2s cubic-bezier(0, 0.6, 0.2, 1);
+}
+.post__image--1:before {
+  background-image: url("./photo/foodpois.jpg");
+}
+.post__image--2:before {
+  background-image: url("./photo/blood.jfif");
+}
+.post__image--3:before {
+  background-image: url("./photo/mia.jfif");
+}
+.post__image--4:before {
+  background-image: url("./photo/self\ diagnosis.png");
+}
+.post__image--5:before {
+  background-image: url("./photo/allargy.jpg");
+}
+.post__image--6:before {
+  background-image: url("./photo/illness.jpg");
+}
+.post__content {
+  margin: -3rem 1.5rem 0;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+  transition: margin 0.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.post__inside {
+  overflow: hidden;
+  height: 10.85rem;
+
+  transition: height 0.2s ease-in-out;
+}
+.post__title {
+  font-size: 2.35rem;
+  line-height: 1;
+  margin: 0 0 1rem;
+  font-weight: 300;
+  color: #042A4F;
+}
+.post__excerpt {
+  overflow: hidden;
+  margin: 0;
+  max-height: 15.25rem;
+  position: relative;
+}
+.post__button {
+  margin-top: .5rem;
+}
+
+/* ====== HOVER ====== */
+.post:hover .post__content {
+  margin-top: -9.8rem;
+}
+.post:hover .post__inside {
+  height: 15.65rem;
+}
+.post:hover .post__image:after {
+  opacity: 0.5;
+}
+.post:hover .post__image:before {
+  transform: scale(1.1);
+  filter: blur(10px);
+}

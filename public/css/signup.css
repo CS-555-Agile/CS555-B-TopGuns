@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
 * {
-  font: inherit;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -450,6 +449,11 @@ form.sign-in-form {
   box-sizing: border-box;
 }
 
+* {
+  font: inherit;
+
+
+}
 
 body {
   height:100vh;
@@ -498,16 +502,7 @@ body {
   height: calc(var(--radio-switch-height) - 2*var(--radio-switch-padding));
   width: calc(var(--radio-switch-width)*0.5 - var(--radio-switch-padding));
 }
-.error-div{
 
- background-color: #f2dede;
-  border-color: #ebccd1;
-
-  border-radius: 4px;
-  padding: 15px;
-  margin-bottom: 20px;
- 
-}
 .radio-switch__label {
   position: relative;
   z-index: 2;
