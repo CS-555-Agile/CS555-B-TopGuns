@@ -38,6 +38,44 @@ else{
  
 });
 
+function scrollToContent() {
+  var contentElement = document.querySelector('.content');
+  var contentOffset = contentElement.offsetTop;
+
+  window.scrollTo({
+      top: contentOffset,
+      behavior: 'smooth'
+  });
+}
+
+document.body.addEventListener('click', function(event) {
+  // Check if the clicked element is inside a dropdown
+  let isDropdownClick = event.target.closest('.dropdown');
+
+  // If not, close any open dropdowns
+  if (!isDropdownClick) {
+      closeAllDropdowns();
+  }
+});
+
+function closeAllDropdowns() {
+  // Close upcoming appointments dropdown
+  document.getElementById('upcomingDropdown').classList.remove('open');
+
+  // Close past appointments dropdown
+  document.getElementById('pastDropdown').classList.remove('open');
+}
+
+// Add click event listeners to dropdown buttons to toggle the dropdowns
+document.getElementById('upcomingDropdown').addEventListener('click', function() {
+  closeAllDropdowns();
+  this.classList.toggle('open');
+});
+
+document.getElementById('pastDropdown').addEventListener('click', function() {
+  closeAllDropdowns();
+  this.classList.toggle('open');
+});
 // Fetch data from a remote server.
 async function fetchData() {
   const response = await fetch('http://localhost:3000/appointment/getConsultant');
