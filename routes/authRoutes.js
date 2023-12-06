@@ -101,7 +101,7 @@ router
       console.log("Line 96", err);
       return res.status(err && err.status?err.status:400).render("auth/signup", {
         title: "Login",
-        error: err?.message ?? err,
+        error: err && err.mesaage?err.message:err,
         partial: "signup-script",
         css: "signup-css",
       });
@@ -149,7 +149,7 @@ router
       console.log("Line 124", err);
       return res.status(err.status?err.status:500).render("auth/signup", {
         title: "Login",
-        error: err?.message ?? err,
+        error: err && err.mesaage?err.message:err,
         partial: "signup-script",
         css: "signup-css",
       });
@@ -194,7 +194,7 @@ router
         title: "Sign-up",
         partial: "signup-script",
         css: "signup-css",
-        error: err?.message ?? err,
+        error: err && err.mesaage?err.message:err,
       });
     }
   })
@@ -221,7 +221,7 @@ router
         title: "Sign-up",
         partial: "signup-script",
         css: "signup-css",
-        error: err?.message ?? err,
+        error: err && err.mesaage?err.message:err,
       });
     }
     try {
@@ -254,7 +254,7 @@ router
           title: "Sign-up",
           partial: "signup-script",
           css: "signup-css",
-          error: err?.message ?? err,
+          error: err && err.mesaage?err.message:err,
         });
       } else {
         return res.redirect("/signup");
@@ -265,7 +265,7 @@ router
         title: "Sign-up",
         partial: "signup-script",
         css: "signup-css",
-        error: err?.message ?? err,
+        error: err && err.mesaage?err.message:err,
       });
     }
   });
