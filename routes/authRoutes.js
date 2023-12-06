@@ -81,7 +81,7 @@ router
       }
     } catch (err) {
       return res
-        .status(err?.status ?? 500)
+        .status(err && err.status?err.status:500)
         .render("auth/signup", {
           title: "Login",
           partial: "signup-script",
@@ -99,7 +99,7 @@ router
       validPassword(passwordInput);
     } catch (err) {
       console.log("Line 96", err);
-      return res.status(err?.status ?? 400).render("auth/signup", {
+      return res.status(err && err.status?err.status:400).render("auth/signup", {
         title: "Login",
         error: err?.message ?? err,
         partial: "signup-script",
@@ -138,16 +138,16 @@ router
         // return res.status(200).redirect("/home");
       } else {
         console.log("Line 115 .......", err);
-        return res.status(err?.status ?? 500).render("auth/signup", {
+        return res.status(err.status?err.status:500).render("auth/signup", {
           title: "Login",
-          error: err?.message ?? err,
+          error: err.message?err.message:err,
           partial: "signup-script",
           css: "signup-css",
         });
       }
     } catch (err) {
       console.log("Line 124", err);
-      return res.status(err?.status ?? 500).render("auth/signup", {
+      return res.status(err.status?err.status:500).render("auth/signup", {
         title: "Login",
         error: err?.message ?? err,
         partial: "signup-script",
@@ -190,7 +190,7 @@ router
       }
     } catch (err) {
       console.log(err);
-      return res.status(err?.status ?? 500).render("auth/signup", {
+      return res.status(err && err.status?err.status:500).render("auth/signup", {
         title: "Sign-up",
         partial: "signup-script",
         css: "signup-css",
@@ -217,7 +217,7 @@ router
       validPassword(passwordInput);
     } catch (err) {
       console.log(err, "Line 160");
-      return res.status(err?.status ?? 400).render("auth/signup", {
+      return res.status(err && err.status?err.status:400).render("auth/signup", {
         title: "Sign-up",
         partial: "signup-script",
         css: "signup-css",
@@ -250,7 +250,7 @@ router
       );
       if (!newUser.insertedUser) {
         console.log(err, "Line 194");
-        return res.status(err?.status ?? 500).render("auth/signup", {
+        return res.status(err && err.status?err.status:500).render("auth/signup", {
           title: "Sign-up",
           partial: "signup-script",
           css: "signup-css",
@@ -261,7 +261,7 @@ router
       }
     } catch (err) {
       console.log(err, "Line 206");
-      return res.status(err?.status ?? 500).render("auth/signup", {
+      return res.status(err && err.status?err.status:500).render("auth/signup", {
         title: "Sign-up",
         partial: "signup-script",
         css: "signup-css",
