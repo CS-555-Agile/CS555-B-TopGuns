@@ -136,7 +136,7 @@ router.route("/").get(async (req, res) => {
 });
 router.route("/getConsultant").get(async (req, res) => {
   try {
-    if (!req.session.user?.verified) {
+    if (!req.session.user.verified) {
       if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
             title: "Home",
@@ -165,7 +165,7 @@ router.route("/getConsultant").get(async (req, res) => {
 });
 router.route("/getProfessioanl").get(async (req, res) => {
   try {
-    if (!req.session.user?.verified) {
+    if (!req.session.user.verified) {
       if(req.session.user.category ==="patient"){
           return res.render("home/homePage",{
             title: "Home",
@@ -198,7 +198,7 @@ router.route("/getProfessioanl").get(async (req, res) => {
 router.route("/show").get(async (req, res) => {
   //code here for GET
   try {
-    if (!req.session.user?.verified || req.session.user.category==="patient") {
+    if (!req.session.user.verified || req.session.user.category==="patient") {
       return res.render("home/homePage",{
         title: "Home",
         partial: "home-script",
