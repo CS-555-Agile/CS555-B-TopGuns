@@ -15,9 +15,9 @@ window.addEventListener('resize', changeSearchIcon);
 function changeSearchIcon(){
     let winSize = window.matchMedia("(min-width: 1200px)");
     if(winSize.matches){
-        document.getElementsByClassName('.search-icon').src = "../../public/images/search-icon.png";
+        document.querySelector('.search-icon img').src = "images/search-icon.png";
     } else {
-        document.getElementsByClassName('.search-icon').src = "../../public/images/search-icon-dark.png";
+        document.querySelector('.search-icon img').src = "images/search-icon-dark.png";
     }
 }
 changeSearchIcon();

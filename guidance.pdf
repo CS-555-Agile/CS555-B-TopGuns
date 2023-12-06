@@ -1,0 +1,9 @@
+To Run the code 
+Step 1 - Add .env file with correct credentials
+step 2 - open terminal to the correct path and type "npm i" to download all dependencies
+Step 3 - open terminal to the correct path and type "npm start"
+
+To Run the test cases
+
+Step 1 - open terminal to the correct path and type "npm test"
+

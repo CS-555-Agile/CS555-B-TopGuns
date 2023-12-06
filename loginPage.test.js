@@ -4,8 +4,10 @@ const os = require('os');
 const { Builder, By, Key, until } = require('selenium-webdriver')
 const assert = require('assert')
 
-describe('Route Tests after login', () => {
 
+describe('Route Tests after login', () => {
+  // app.set.timeout(30000)
+  
 
   //Test Case for GET Route performance Tests
   it('should respond within 500ms', async () => {
@@ -118,7 +120,7 @@ describe('Route Tests after login', () => {
     expect(bookAppointmentResponse.status).toBe(200);
    
   });
-   //testing with UI
+  //testing with UI
   let driver
   let vars
   beforeEach(async function() {
@@ -139,5 +141,6 @@ describe('Route Tests after login', () => {
     await driver.findElement(By.css("body")).click()
     await driver.findElement(By.id("about")).click()
   });
+  
 });
 
