@@ -24,7 +24,7 @@ html{
     font-size: 10px;
 }
 body{
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     line-height: 1.6;
     font-family: var(--poppins-font);
 }
@@ -474,9 +474,6 @@ button[class ^= navbar]:hover{
     margin-bottom: 0;
 }
 .doc-panel-item .img{
-    max-width: 357px;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
     height: 440px;
     background-color: var(--light-gray);
@@ -499,7 +496,11 @@ button[class ^= navbar]:hover{
     -o-transition: var(--transition);
     transition: var(--transition);
 }
-
+.doc-panel-item .img{
+    max-width: 357px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .doc-panel-item:hover .info{
     bottom: 0;
 }
@@ -1012,3 +1013,143 @@ button[class ^= navbar]:hover{
     -o-transition: none!important;
     transition: none!important;
 }
+
+.rate {
+    position: absolute;
+    left: 66%;
+    top: 81%;
+    height: 106px;
+    padding: -10px;
+  }
+  
+  .rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+  }
+  
+  .rate:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 50px;
+    color: #ccc;
+  }
+  
+  .rate:not(:checked) > label:before {
+    content: '★ ';
+  }
+  
+  .rate > input:checked ~ label {
+    color: #ffc700;
+  }
+  
+  .rate:not(:checked) > label:hover,
+  .rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+  }
+  
+  .rate > input:checked + label:hover,
+  .rate > input:checked + label:hover ~ label,
+  .rate > input:checked ~ label:hover,
+  .rate > input:checked ~ label:hover ~ label,
+  .rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+  }
+  /* ... (your existing styles) ... */
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+    .rate {
+      position: relative;
+      left: auto;
+      top: auto;
+      height: auto;
+      padding: 0;
+      text-align: center;
+    }
+  
+    .rate:not(:checked) > label {
+      float: none;
+      display: inline-block;
+      margin: 0 5px;
+    }
+  
+    .rate:not(:checked) > label:before {
+      content: '★ ';
+    }
+  }
+  /* ... (your existing styles) ... */
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+    .rate {
+      position: relative;
+      left: auto;
+      top: auto;
+      height: auto;
+      padding: 0;
+      text-align: center;
+    }
+  
+    .rate:not(:checked) > label {
+      float: none;
+      display: inline-block;
+      margin: 0 5px;
+    }
+  
+    .rate:not(:checked) > label:before {
+      content: '★ ';
+    }
+  }
+  /* ... (your existing styles) ... */
+
+/* Media queries for responsiveness */
+@media (max-width: 767px) {
+    .rate {
+      position: relative;
+      left: auto;
+      top: auto;
+      height: auto;
+      padding: 0;
+      text-align: center;
+    }
+  
+    .rate:not(:checked) > label {
+      float: none;
+      display: inline-block;
+      margin: 0 5px;
+    }
+  
+    .rate:not(:checked) > label:before {
+      content: '★ ';
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Adjust styles for screens up to 480px width */
+  }
+  
+  @media (max-width: 320px) {
+    /* Adjust styles for screens up to 320px width */
+  }
+  
+  /* Additional media query for screens with a width between 700px and 1950px */
+  @media (min-width: 700px) and (max-width: 1950px) {
+    /* Adjust styles for screens in the specified width range */
+    .rate {
+        top: 81%;
+      /* Add your specific styles for this width range */
+    }
+  }
+  
+  /* Additional media query for screens with a width between 800px and 900px */
+  @media (min-width: 800px) and (max-width: 900px) {
+    /* Adjust styles for screens in the specified width range */
+    .rate {
+        top: 77% to 81%;
+      /* Add your specific styles for this width range */
+    }
+  }
+  
