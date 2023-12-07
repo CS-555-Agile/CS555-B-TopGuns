@@ -24,10 +24,18 @@ router
             return res.render("home/homePage",{
               title: "Home",
               partial: "home-script",
-              css: "home-css",
+              css: "homedoc-css",
               doctor:true
             });
           }
+        //   return res
+        //   .status(200)
+        //   .render('home/homePage',{
+        //   partial: "home-script",
+        //   css: "home-css",
+        //   title:"Home",
+        // });
+      
       
     } 
     catch (e) {
@@ -39,6 +47,7 @@ router
           css: "home-css",
           title:"Error",
           error:e.error});
+          // res.status(404).send(e);       
       }
       else{
         return res
@@ -48,6 +57,7 @@ router
           css: "home-css",
           title:"Error",
           error:e});
+        // res.status(400).send(e);
       }
     } 
   });

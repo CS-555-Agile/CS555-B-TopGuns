@@ -26,6 +26,10 @@ router.route("/").get(async (req, res) => {
     if (!req.session.user?.verified || req.session.user.category!="patient") {
       return res.redirect("/home");
     } else {
+        // const past = await getPastAppointment(String(req.session.user._id));
+        // const future = await getupComingAppointment(String(req.session.user._id));
+        // console.log(past)
+        // console.log(future)
       return res
         .status(200)
         .render("feedback", {
@@ -51,6 +55,7 @@ router.route("/").get(async (req, res) => {
 .post(async (req, res) => {
   console.log("POSTING A FEEDBACK..... ");
   const patientId = String(req.session.user._id);
+  // const patientId = "3454566767ebavd";
 
   try {
     let {
@@ -73,11 +78,13 @@ router.route("/").get(async (req, res) => {
       rating: rating,
       timestamp: getCurrentTimestamp()
     }
+    // console.log(FeedbackObject)
     const newFeedback = await createFeedback(FeedbackObject);
     if (!newFeedback.insertedFeedback) {
       console.log("Failed to post a feedback.");
       return res.status(err?.status ?? 500)
     } else {
+      // return res.json("Feedback posted successfully. ");
       return res.redirect("/home");
     }
   } catch (err) {
@@ -87,12 +94,57 @@ router.route("/").get(async (req, res) => {
 
 
 });
+// doctor side 
+
+router.route("/show").get(async (req, res) => {
+  //code here for GET
+  try {
+    if (!req.session.user?.verified || req.session.user.category==="patient") {
+      return res.render("home/homePage",{
+        title: "Home",
+        partial: "home-script",
+        css: "homedoc-css",
+        doctor:true
+      });
+    } 
+    else {
+      
+      
+      let userId = String(req.session.user._id);
+      console.log(userId)
+     
+      const feedbacksList = await getFeedbacksStaff(userId);
+      console.log(feedbacksList)
+     
+      return res
+        .status(200)
+        .render("rating", {
+          rating:feedbacksList,
+          title: "Feedback",
+          partial: "rating-script",
+          css: "rating-css",
+          
+        });
+      
+    }
+  } catch (err) {
+    console.log(err)
+    return res
+      .status(err?.status ?? 500)
+      .render("auth/signup", {
+        title: "Login",
+        partial: "signup-script",
+        css: "signup-css",
+      });
+  }
+});
+
 
 router.route("/patients/:patientId").get(async (req, res) => {
 
-  let patientId = req.params.patientId
+  patientId = req.params.patientId
   try {
-    let feedbacksList = await getFeedbacksPatients(patientId);
+    feedbacksList = await getFeedbacksPatients(patientId);
     res.json(feedbacksList);
   } catch (error) {
     console.log("ERROR: " + error);
@@ -103,9 +155,9 @@ router.route("/patients/:patientId").get(async (req, res) => {
 
 router.route("/staff/:staffId").get(async (req, res) => {
 
-  let staffId = req.params.staffId
+  staffId = req.params.staffId
   try {
-    let feedbacksList = await getFeedbacksStaff(staffId);
+    feedbacksList = await getFeedbacksStaff(staffId);
     res.json(feedbacksList);
   } catch (error) {
     console.log("ERROR: " + error);
